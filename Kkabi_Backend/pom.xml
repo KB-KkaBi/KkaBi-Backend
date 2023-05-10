@@ -18,6 +18,18 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+	<!-- jsp view를 사용하기 위한 설정 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>9.0.46</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<!-- jsp에서 jstl lib -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
