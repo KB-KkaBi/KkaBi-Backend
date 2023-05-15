@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountList;
-import com.project.repository.AccountListRepository;
+import com.project.repository.AccountInfoRepository;
 
 @SpringBootTest
 @Commit
@@ -16,37 +16,18 @@ import com.project.repository.AccountListRepository;
 class KkabiBackendApplicationTests {
 
 	@Autowired
-	private AccountListRepository accountRep;
+	private AccountInfoRepository accountInfoRep;
 	
 	@Test
 	void contextLoads() {
 	}
 
 	@Test
-	void accountListInsert() {
-		accountRep.save(new AccountList(1, "깨비 미래 적금", 날짜, status?, 유저))
+	void accountInfoInsert() {
+		accountInfoRep.save(new AccountList(1, "깨비 미래 적금", 10.0, "12일 만기, 이자율 10%"));
+		accountInfoRep.save(new AccountList(2, "깨비 young 적금", 5.0, "6일 만기, 이자율 5%"));
+		accountInfoRep.save(new AccountList(3, "깨비 자유로운 예금", 0.0, "매일 100원 지급, 예금 한도 하루 5만원"));
+		accountInfoRep.save(new AccountList(4, "깨비 super young 예금", 0.0, "매일 500원 지급, 예금 한도 하루 1만원"));
 		
-		/*
-		 * private int accountId;
-	
-	@Column(length = 20)
-	private String accountName;
-	
-	private int accountMoney;
-	
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-	
-	@Column(length = 1)
-	private String status;
-	
-	@JoinColumn(name="user_seq")
-	@ManyToOne
-	private User user;
-	
-	@JoinColumn(name="account_info_id")
-	@ManyToOne
-	private AccountInfo accountInfo;
-		 */
 	}
 }
