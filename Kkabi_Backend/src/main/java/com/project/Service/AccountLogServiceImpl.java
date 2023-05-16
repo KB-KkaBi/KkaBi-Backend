@@ -19,7 +19,7 @@ public class AccountLogServiceImpl implements AccountLogService{
 	@Override
 	public AccountLog insertAccountLog(AccountLog accountLog) {
 		AccountLog accountLogNew = AccountLogRep.save(accountLog);
-		System.out.println(accountLogNew);
+		
 		return accountLogNew;
 	}
 

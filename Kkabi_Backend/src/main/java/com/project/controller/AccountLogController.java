@@ -18,8 +18,10 @@ public class AccountLogController {
 	
 	@PostMapping("/account-log")
 	public AccountLog insertAccountLog(AccountLog accountLog, int accountId, int userSeq) {
+		AccountList accountList = new AccountList(accountId, new User(userSeq));
+		accountLog.setAccountListById(accountList);
+		accountLog.setAccountListByUser(accountList);
 		
-		accountLog.setAccountListById(new AccountList(accountId, new User(userSeq)));
 		AccountLog dbAccountLog = accountLogService.insertAccountLog(accountLog);
 		
 		return dbAccountLog;
