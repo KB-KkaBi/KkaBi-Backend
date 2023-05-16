@@ -1,4 +1,4 @@
-package com.project.Service;
+package com.project.service;
 
 import com.project.domain.AccountLog;
 
