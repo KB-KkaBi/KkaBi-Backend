@@ -1,5 +1,7 @@
 package com.project;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.Test;
@@ -35,9 +37,20 @@ class SangwooTest {
 		AccountList list = AccountList.builder().accountName("이름").accountMoney(10000).status("1").user(user).accountInfo(info).build();
 		entityManager.persist(list);
 		accountLogRep.save(AccountLog.builder().accountLogMoney(10000).transactionAmount(-1000).transactionReason("과자")
-				.transactionType("1").accountListById(list).build());
+				.transactionType("1").accountList(list).build());
 	}
 	
+	
+	@Test
+	void accountLogSelect() {
+		
+		List<AccountLog> logList = accountLogRep.findAllByAccountListJPQL(1);
+		
+		for(AccountLog l : logList) {
+			System.out.println(l);
+		}
+		
+	}
 
 	@Test
 	void contextLoads() {
