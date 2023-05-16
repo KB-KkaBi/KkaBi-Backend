@@ -65,6 +65,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		 <!-- QueryDSL LIB -->
+       <dependency>
+         <groupId>com.querydsl</groupId>
+         <artifactId>querydsl-apt</artifactId>
+ <!-- querydsl과 jsp동시 사용시 오류 querydsl-apt내의 org.eclipse.jdt.core.compiler:ecj4,3,1에 
+            대한 종속성을 강제하여 JSP오류 STS 재시작 -->
+         <exclusions>
+            <exclusion>
+               <groupId>org.eclipse.jdt.core.compiler</groupId>
+               <artifactId>ecj</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      
+      <dependency>
+         <groupId>com.querydsl</groupId>
+         <artifactId>querydsl-jpa</artifactId>
+      </dependency>
+      
 	</dependencies>
 
 	<build>
