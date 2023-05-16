@@ -1,6 +1,9 @@
 package com.project.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +27,14 @@ public class AccountLogController {
 		AccountLog dbAccountLog = accountLogService.insertAccountLog(accountLog);
 		
 		return dbAccountLog;
+	}
+	
+	@GetMapping("/account-log")
+	public List<AccountLog> selectAccountLog(int accountId){
+		
+		List<AccountLog> accountLogList = accountLogService.selectAccoungLog(accountId);
+		
+		return accountLogList;
 	}
 	
 
