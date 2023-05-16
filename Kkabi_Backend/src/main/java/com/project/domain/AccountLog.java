@@ -39,9 +39,6 @@ public class AccountLog {
 	
 	private int accountLogMoney;
 	
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-	
 	@Column(length = 20)
 	private String transactionType;
 	
