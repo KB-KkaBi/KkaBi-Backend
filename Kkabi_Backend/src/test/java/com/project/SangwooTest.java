@@ -25,6 +25,7 @@ class SangwooTest {
 	@Autowired
 	EntityManager entityManager;
 	
+	
 	@Test
 	void accountLogInsert() {
 		User user = User.builder().email("award_uuu@naver.com").pw("1234").character("깨비").nickname("어월두").build();
