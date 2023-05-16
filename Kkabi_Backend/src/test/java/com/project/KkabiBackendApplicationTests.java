@@ -30,5 +30,7 @@ class KkabiBackendApplicationTests {
 		accountInfoRep.save(new AccountInfo(4, "깨비 super young 예금", 0.0, "매일 500원 지급, 예금 한도 하루 1만원"));
 		
 	}
+	
+	
 }
 
