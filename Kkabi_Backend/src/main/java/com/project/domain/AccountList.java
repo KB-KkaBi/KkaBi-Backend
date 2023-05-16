@@ -59,9 +59,8 @@ public class AccountList {
 	 * @param accountId
 	 * @param user
 	 */
-	public AccountList(int accountId, User user) {
+	public AccountList(int accountId) {
 		this.accountId = accountId;
-		this.user = user;
 	}
 
 }

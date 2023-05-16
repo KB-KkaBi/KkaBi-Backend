@@ -47,10 +47,6 @@ public class AccountLog {
 	
 	private int transactionAmount;
 	
-	@JoinColumn(name="user_seq")
-	@ManyToOne
-	private AccountList accountListByUser;
-	
 	@JoinColumn(name="account_id")
 	@ManyToOne
 	private AccountList accountListById;

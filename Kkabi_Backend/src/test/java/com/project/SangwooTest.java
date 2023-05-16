@@ -35,7 +35,7 @@ class SangwooTest {
 		AccountList list = AccountList.builder().accountName("이름").accountMoney(10000).status("1").user(user).accountInfo(info).build();
 		entityManager.persist(list);
 		accountLogRep.save(AccountLog.builder().accountLogMoney(10000).transactionAmount(-1000).transactionReason("과자")
-				.transactionType("1").accountListById(list).accountListByUser(list).build());
+				.transactionType("1").accountListById(list).build());
 	}
 	
 
