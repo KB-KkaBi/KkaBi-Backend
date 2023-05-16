@@ -39,6 +39,9 @@ public class AccountLog {
 	
 	private int accountLogMoney;
 	
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
 	@Column(length = 20)
 	private String transactionType;
 	
@@ -46,6 +49,10 @@ public class AccountLog {
 	private String transactionReason;
 	
 	private int transactionAmount;
+	
+	@JoinColumn(name="user_seq")
+	@ManyToOne
+	private AccountList accountListByUser;
 	
 	@JoinColumn(name="account_id")
 	@ManyToOne

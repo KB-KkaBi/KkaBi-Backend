@@ -40,13 +40,4 @@ public class User {
 	@Column(length = 50)
 	private String character;
 	
-	/**
-	 * user로 접근하기 위한 생성자
-	 * 
-	 * @param userSeq
-	 */
-	public User(int userSeq) {
-		this.userSeq = userSeq;
-	}
-	
 }
