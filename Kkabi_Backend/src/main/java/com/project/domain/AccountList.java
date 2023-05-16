@@ -52,5 +52,15 @@ public class AccountList {
 	@JoinColumn(name="account_info_id")
 	@ManyToOne
 	private AccountInfo accountInfo;
+	
+	/**
+	 * AccountLog insert를 위한 생성자
+	 * 
+	 * @param accountId
+	 * @param user
+	 */
+	public AccountList(int accountId) {
+		this.accountId = accountId;
+	}
 
 }
