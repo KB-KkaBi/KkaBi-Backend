@@ -40,4 +40,6 @@ public class User {
 	@Column(length = 50)
 	private String character;
 	
+
+	
 }
