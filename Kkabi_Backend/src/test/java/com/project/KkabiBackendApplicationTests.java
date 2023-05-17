@@ -1,5 +1,6 @@
 package com.project;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountInfo;
+import com.project.domain.AccountList;
+import com.project.domain.User;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
 
@@ -18,6 +21,13 @@ class KkabiBackendApplicationTests {
 
 	@Autowired
 	private AccountInfoRepository accountInfoRep;
+	
+	@Autowired
+	private AccountListRepository accountListRep;
+	
+	@Autowired
+	EntityManager entityManager;
+	
 	
 	
 	@Test
@@ -34,6 +44,16 @@ class KkabiBackendApplicationTests {
 		
 	}
 
+	@Test
+	void accountListInsert() {
+		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
+		entityManager.persist(user);
+		AccountInfo info = AccountInfo.builder().accountType("적금").interestRate(0.07).information("좋은 적금").build();
+		entityManager.persist(info);
+		AccountList list = AccountList.builder().accountName("감자").accountMoney(0).status("1").user(user).accountInfo(info).build();
+		entityManager.persist(list);
+		accountListRep.save(list);
+	}
 	
 }
 
