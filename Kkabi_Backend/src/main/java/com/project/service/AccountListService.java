@@ -1,5 +1,7 @@
 package com.project.service;
 
-public interface AccountListService {
+import com.project.domain.AccountList;
 
+public interface AccountListService {
+	 AccountList insertAccountList(AccountList accountList);
 }

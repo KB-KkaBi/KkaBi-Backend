@@ -9,6 +9,7 @@ import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountInfo;
 import com.project.repository.AccountInfoRepository;
+import com.project.repository.AccountListRepository;
 
 @SpringBootTest
 @Commit
@@ -18,8 +19,10 @@ class KkabiBackendApplicationTests {
 	@Autowired
 	private AccountInfoRepository accountInfoRep;
 	
+	
 	@Test
 	void contextLoads() {
+
 	}
 
 	@Test
@@ -30,5 +33,7 @@ class KkabiBackendApplicationTests {
 		accountInfoRep.save(new AccountInfo(4, "깨비 super young 예금", 0.0, "매일 500원 지급, 예금 한도 하루 1만원"));
 		
 	}
+
+	
 }
 
