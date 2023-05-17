@@ -55,5 +55,20 @@ public class UserController {
 	/**
 	 * 로그아웃하기
 	 **/
-	
+	@PostMapping("/logout")
+	public Object logout(@RequestBody Map<String,Integer> map, HttpSession session) {
+		System.out.println("userSeq : "+ map);
+		//System.out.println(map.get("userSeq"));
+		
+		User dbUser = userService.logout(map.get("userSeq"));
+		
+		//모든 세션의 정보를 삭제한다.
+		session.invalidate();
+		
+		HashMap<String, Object> maps = new HashMap<String, Object>();
+		maps.put("message", "로그아웃 성공");
+		
+		
+		return maps;
+	}
 }
