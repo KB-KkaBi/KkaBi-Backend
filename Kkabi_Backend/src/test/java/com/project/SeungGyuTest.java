@@ -35,7 +35,7 @@ class SeungGyuTest {
 	void signIn() {
 		User user = User.builder() // 빌더어노테이션으로 생성된 빌더클래스 생성자
 			   .email("tmdrb0912@naver.com")
-			   .pw("123")
+			   .pw("1234")
 			   .build();
 		
 		User dbuser = userService.signIn(user);
@@ -64,7 +64,11 @@ class SeungGyuTest {
 //	}
 	
 	
-
+	@Test
+	void logout() {
+		User user = userService.logout(2);
+		System.out.println(user);
+	}
 	@Test
 	void contextLoads() {
 	}

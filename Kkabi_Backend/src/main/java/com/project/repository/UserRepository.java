@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.project.domain.User;
 
-public interface UserRepository extends JpaRepository<User, String>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	/**
 	 * 로그인 하기 위한 정보 검색

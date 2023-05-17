@@ -51,5 +51,8 @@ public class User {
 		this.userSeq = userSeq;
 	}
 	
-
+	public User(String email, String pw) {
+		this.email = email;
+		this.pw = pw;
+	}
 }
