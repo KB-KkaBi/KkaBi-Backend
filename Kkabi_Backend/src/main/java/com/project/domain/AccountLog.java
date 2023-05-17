@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.project.dto.AccountLogRequest;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,5 +54,17 @@ public class AccountLog {
 	@JoinColumn(name="account_id")
 	@ManyToOne
 	private AccountList accountList;
+	
+	/**
+	 * AccountLogReqeust에서 옮길 생성자
+	 */
+	
+	public AccountLog(AccountLogRequest request) {
+		this.accountLogMoney = request.getAccountLogMoney();
+		this.transactionType = request.getTransactionType();
+		this.transactionReason = request.getTransactionReason();
+		this.transactionAmount = request.getTransactionAmount();
+		this.accountList = new AccountList(request.getAccountId());
+	}
 
 }
