@@ -24,25 +24,23 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class QuizInfo {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "quiz_id_gen")
 	@SequenceGenerator(name = "quiz_id_gen", allocationSize = 1, sequenceName = "quiz_id_gen")
 	private int quizId;
-	
+
 	@Column(length = 100)
 	private String problem;
-	
+
 	@Column(length = 20)
 	private String answer;
-	
+
 	@Column(length = 100)
 	private String array;
-	
-	private int lev;
-	
-	@JoinColumn(name="treasure_id")
+
+	@JoinColumn(name = "treasure_id")
 	@ManyToOne
 	private TreasureInfo treasureInfo;
-	
+
 }
