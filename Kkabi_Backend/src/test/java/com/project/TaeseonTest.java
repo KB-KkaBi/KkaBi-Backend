@@ -13,7 +13,7 @@ import com.project.repository.UserRepository;
 @SpringBootTest
 @Commit
 @Transactional
-class Step32UserApplicationTests {
+class TaeseonTest {
 	
 	@Autowired
 	private UserRepository userRep;

@@ -14,11 +14,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.project.dto.AccountLogRequest;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -27,6 +30,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class AccountLog {
 	
 	@Id
@@ -39,9 +43,6 @@ public class AccountLog {
 	
 	private int accountLogMoney;
 	
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-	
 	@Column(length = 20)
 	private String transactionType;
 	
@@ -50,12 +51,20 @@ public class AccountLog {
 	
 	private int transactionAmount;
 	
-	@JoinColumn(name="user_seq")
-	@ManyToOne
-	private AccountList accountListByUser;
-	
 	@JoinColumn(name="account_id")
 	@ManyToOne
-	private AccountList accountListById;
+	private AccountList accountList;
+	
+	/**
+	 * AccountLogReqeust에서 옮길 생성자
+	 */
+	
+	public AccountLog(AccountLogRequest request) {
+		this.accountLogMoney = request.getAccountLogMoney();
+		this.transactionType = request.getTransactionType();
+		this.transactionReason = request.getTransactionReason();
+		this.transactionAmount = request.getTransactionAmount();
+		this.accountList = new AccountList(request.getAccountId());
+	}
 
 }
