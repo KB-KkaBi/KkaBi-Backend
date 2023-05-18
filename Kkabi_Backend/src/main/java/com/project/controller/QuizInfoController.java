@@ -16,10 +16,10 @@ import com.project.service.QuizInfoService;
 public class QuizInfoController {
 	@Autowired
 	private QuizInfoService quizInfoService;
-		
+
 	@GetMapping("/quiz-info")
-	public List getQuizList(@RequestParam int level) {
-		List<QuizInfo> list = quizInfoService.findByLev(level);
+	public List getQuizList(@RequestParam int treasureId) {
+		List<QuizInfo> list = quizInfoService.findByTreasureId(treasureId);
 		return list;
 	}
 }

@@ -28,24 +28,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class QuizLog {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "quiz_log_id_gen")
 	@SequenceGenerator(name = "quiz_log_id_gen", allocationSize = 1, sequenceName = "quiz_log_id_gen")
 	private int quizLogId;
-	
+
 	@CreationTimestamp
 	private LocalDateTime quizLogDate;
-	
+
 	@Column(length = 1)
 	private String success;
-	
-	@JoinColumn(name="user_seq")
+
+	@JoinColumn(name = "user_seq")
 	@ManyToOne
 	private User user;
-	
-	@JoinColumn(name="quiz_id")
+
+	@JoinColumn(name = "quiz_id")
 	@ManyToOne
 	private QuizInfo quizInfo;
-	
+
 }

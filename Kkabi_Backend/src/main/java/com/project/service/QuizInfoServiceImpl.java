@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class QuizInfoServiceImpl implements QuizInfoService {
-	
+
 	private final QuizInfoRepository quizInfoRep;
 
 	@Override
@@ -24,8 +24,8 @@ public class QuizInfoServiceImpl implements QuizInfoService {
 	}
 
 	@Override
-	public List<QuizInfo> findByLev(int level) {
-		return quizInfoRep.findByLev(level);
+	public List<QuizInfo> findByTreasureId(int treasureId) {
+		return quizInfoRep.findAllByTreasureIdJPQL(treasureId);
 	}
 
 }
