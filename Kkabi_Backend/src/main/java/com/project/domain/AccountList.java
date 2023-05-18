@@ -14,11 +14,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.project.dto.AccoutListRequestDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -27,6 +30,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = {"user","accountInfo"})
 public class AccountList {
 	
 	@Id
@@ -36,6 +40,7 @@ public class AccountList {
 	
 	@Column(length = 20)
 	private String accountName;
+	
 	
 	private int accountMoney;
 	
@@ -61,6 +66,14 @@ public class AccountList {
 	 */
 	public AccountList(int accountId) {
 		this.accountId = accountId;
+	}
+	
+	public AccountList(AccoutListRequestDTO request) {
+		this.accountName = request.getAccountName();
+		this.accountInfo = new AccountInfo(request.getAccountInfoId());
+		this.user = new User(request.getUserSeq());
+		this.status = "1";
+		this.accountMoney = 0;
 	}
 
 }

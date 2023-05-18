@@ -65,7 +65,7 @@ class SeungGyuTest {
 	
 	
 	@Test
-	void logout() {
+	void logout() { 
 		User user = userService.logout(2);
 		System.out.println(user);
 	}

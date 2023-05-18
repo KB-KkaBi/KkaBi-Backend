@@ -1,5 +1,6 @@
 .DS_Store
 application.properties
+KkabiBackendApplicationTests.java
 
 HELP.md
 target/
