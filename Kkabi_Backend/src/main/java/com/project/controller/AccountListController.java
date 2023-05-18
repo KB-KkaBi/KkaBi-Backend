@@ -1,8 +1,12 @@
 package com.project.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +34,17 @@ public class AccountListController {
 		
 		return accountlist;
 	}
+	
+	@GetMapping("/get-account-all")
+	public List<AccountList> selectMyAccountList(HttpSession sessoin){
+		
+		User user = (User) sessoin.getAttribute("loginUser");
+				
+		List<AccountList> accountList = accountListService.selectMyAccountList(user.getUserSeq());
+		
+		return accountList;
+		
+	}
+	
 	
 }
