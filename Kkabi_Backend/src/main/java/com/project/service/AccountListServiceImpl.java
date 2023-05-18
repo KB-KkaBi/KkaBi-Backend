@@ -10,6 +10,9 @@ import com.project.domain.AccountLog;
 import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
 import com.project.repository.AccountListRepository;
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 @Service
@@ -25,6 +28,14 @@ public class AccountListServiceImpl implements AccountListService {
 		AccountList accountLisNew=accountListRep.save(accountList);
 		                           
 		return accountLisNew;
+	}
+
+	@Override
+	public List<AccountList> selectMyAccountList(int userSeq) {
+		
+		List<AccountList> myAccountList = accountListRep.findAccountListByUserSeq(userSeq);
+		
+		return myAccountList;
 	}
 
 }
