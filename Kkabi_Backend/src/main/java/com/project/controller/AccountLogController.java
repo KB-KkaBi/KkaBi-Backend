@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
+
 import com.project.dto.AccountLogRequest;
+
 import com.project.service.AccountLogService;
 
 @RestController
@@ -31,15 +33,7 @@ public class AccountLogController {
 	public AccountLog insertAccountLog(@RequestBody AccountLogRequest request) {
 	    
 	    AccountLog dbAccountLog = accountLogService.insertAccountLog(new AccountLog(request));
-		 
-//		AccountLog accountLog = new AccountLog();
-//	    accountLog.setAccountLogMoney(request.getAccountLogMoney());
-//	    accountLog.setTransactionType(request.getTransactionType());
-//	    accountLog.setTransactionReason(request.getTransactionReason());
-//	    accountLog.setTransactionAmount(request.getTransactionAmount());
-//	    accountLog.setAccountList(new AccountList(request.getAccountId()));
-//		
-//	    AccountLog dbAccountLog = accountLogService.insertAccountLog(accountLog);
+		
 		return dbAccountLog;
 	}
 	
