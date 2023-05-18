@@ -10,9 +10,15 @@ import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
+import com.project.domain.QuizInfo;
+import com.project.domain.QuizLog;
+import com.project.domain.TreasureInfo;
 import com.project.domain.User;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
+import com.project.repository.QuizLogRepository;
+import com.project.repository.TreasureInfoRepository;
+import com.project.service.QuizLogService;
 
 @SpringBootTest
 @Commit
@@ -24,6 +30,15 @@ class KkabiBackendApplicationTests {
 	
 	@Autowired
 	private AccountListRepository accountListRep;
+	
+    @Autowired
+    private QuizLogService quizLogService;
+
+    @Autowired
+    private QuizLogRepository quizLogRepository;
+    
+    @Autowired
+	private TreasureInfoRepository treasureInfoRep;
 	
 	@Autowired
 	EntityManager entityManager;
@@ -57,6 +72,24 @@ class KkabiBackendApplicationTests {
 		entityManager.persist(list);
 		accountListRep.save(list);
 	}
+	
+
+    @Test
+    void quizlogGet() {
+    	treasureInfoRep.save(new TreasureInfo(1, "보물1", 1.0, 100));
+    	treasureInfoRep.save(new TreasureInfo(2, "보물2", 3.0, 300));
+    	treasureInfoRep.save(new TreasureInfo(3, "보물3", 5.0, 500));
+    	treasureInfoRep.save(new TreasureInfo(4, "보물4", 7.0, 700));
+    	
+        for (int i = 1; i <= 30; i++) {
+        	QuizInfo quizInfo=QuizInfo.builder().problem("문제"+i).answer("정답"+i).
+        	quizLogRepository.save(
+        			QuizLog.builder()
+        			.success("1")
+        			.
+        			)
+        }
+    }
 
 	
 }
