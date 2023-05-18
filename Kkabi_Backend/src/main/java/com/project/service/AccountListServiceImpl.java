@@ -38,4 +38,16 @@ public class AccountListServiceImpl implements AccountListService {
 		return myAccountList;
 	}
 
+	@Override
+	public AccountList selectCurrentMyAccount(int accountId) {
+		
+		AccountList currentAccount = accountListRep.findById(accountId).orElse(null);
+		
+		if(currentAccount == null) {
+			 throw new RuntimeException("현재 계좌가 존재하지 않습니다.^^");
+		 }
+		
+		return currentAccount;
+	}
+
 }
