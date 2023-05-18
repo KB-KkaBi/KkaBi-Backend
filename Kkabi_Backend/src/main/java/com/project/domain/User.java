@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -21,6 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class User {
 	
 	@Id
@@ -49,4 +51,8 @@ public class User {
 		this.userSeq = userSeq;
 	}
 	
+	public User(String email, String pw) {
+		this.email = email;
+		this.pw = pw;
+	}
 }

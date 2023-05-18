@@ -44,6 +44,9 @@ class KkabiBackendApplicationTests {
 		
 	}
 
+	
+
+
 	@Test
 	void accountListInsert() {
 		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
@@ -54,6 +57,7 @@ class KkabiBackendApplicationTests {
 		entityManager.persist(list);
 		accountListRep.save(list);
 	}
+
 	
 }
 
