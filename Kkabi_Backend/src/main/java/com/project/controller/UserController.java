@@ -35,7 +35,7 @@ public class UserController {
 		
 		//HttpSession에 정보를 저장한다.
 		dbUser.setPw(null);
-		session.setAttribute("loginUser", dbUser);
+		session.setAttribute("loginUser", dbUser); //jsp에서 ${loginUser} 
 		
 		//보내줄 유저정보 다시 세팅
 		HashMap<String, Object> users = new LinkedHashMap<String, Object>();
@@ -56,17 +56,21 @@ public class UserController {
 	 * 로그아웃하기
 	 **/
 	@PostMapping("/logout")
-	public Object logout(@RequestBody Map<String,Integer> map, HttpSession session) {
-		System.out.println("userSeq : "+ map);
-		//System.out.println(map.get("userSeq"));
-		
-		User dbUser = userService.logout(map.get("userSeq"));
-		
-		//모든 세션의 정보를 삭제한다.
-		session.invalidate();
+	public Object logout(HttpSession session) {
+	
+		//그냥 세션에서 값 있는지 확인
+		User user = (User)session.getAttribute("loginUser");
+		//User dbUser = userService.logout(user.getUserSeq());
 		
 		HashMap<String, Object> maps = new HashMap<String, Object>();
-		maps.put("message", "로그아웃 성공");
+		//모든 세션의 정보를 삭제한다.
+		if (user != null) {
+			session.invalidate();
+			maps.put("message", "로그아웃 성공");
+		}else {
+			throw new RuntimeException("로그아웃 실패");
+		}
+		
 		
 		
 		return maps;
