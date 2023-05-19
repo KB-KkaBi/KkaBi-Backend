@@ -79,13 +79,14 @@ private UserService userService;
 	 * */
 	@PostMapping("/update-nickname") //???
 	public Map<String, String> updateNickname( //??
-			@PathVariable("email") String email,
+			HttpSession session,
 			@RequestParam("newNickname") String newNickname
 	) {
 		Map<String, String> response = new HashMap<>();
 		
-		User user = userService.findByEmail(email);
-		userService.updateNickname(user, newNickname);
+		User user = (User) session.getAttribute("loginUser");
+		User dbUser = userService.findByEmail(user.getEmail());
+		userService.updateNickname(dbUser, newNickname);
 		
 		response.put("message", "닉네임 변경이 완료되었습니다.");
 		
