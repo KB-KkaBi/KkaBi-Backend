@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.project.dto.UserLoginRequestDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,8 +53,8 @@ public class User {
 		this.userSeq = userSeq;
 	}
 	
-	public User(String email, String pw) {
-		this.email = email;
-		this.pw = pw;
+	public User(UserLoginRequestDto userDto) {
+		this.email = userDto.getEmail();
+		this.pw = userDto.getPw();
 	}
 }

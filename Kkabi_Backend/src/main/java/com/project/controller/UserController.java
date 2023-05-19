@@ -14,7 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 import com.project.domain.User;
+import com.project.dto.UserLoginRequestDto;
 import com.project.service.UserService;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Example;
+import io.swagger.annotations.ExampleProperty;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 public class UserController {
@@ -28,9 +38,12 @@ public class UserController {
 	 * 
 	 * */
 	@PostMapping("/login")
-	public Object signIn(@RequestBody User user, HttpSession session) {
+	@ApiOperation(value = "로그인", notes = "사용자 로그인할때 사용된다.") //method에 대한 설명을 추가
+	public Object signIn(@RequestBody UserLoginRequestDto user, HttpSession session) {
 		
-		User dbUser = userService.signIn(user);
+		
+		User loginUser = new User(user);
+		User dbUser = userService.signIn(loginUser);
 		
 		
 		//HttpSession에 정보를 저장한다.
@@ -55,8 +68,9 @@ public class UserController {
 	/**
 	 * 로그아웃하기
 	 **/
+	@ApiOperation(value = "로그아웃", notes = "사용자 로그아웃할 때 사용된다.")
 	@PostMapping("/logout")
-	public Object logout(HttpSession session) {
+	public Object logout(@ApiIgnore HttpSession session) {
 	
 		//그냥 세션에서 값 있는지 확인
 		User user = (User)session.getAttribute("loginUser");
@@ -70,8 +84,6 @@ public class UserController {
 		}else {
 			throw new RuntimeException("로그아웃 실패");
 		}
-		
-		
 		
 		return maps;
 	}
