@@ -14,7 +14,10 @@ import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 import com.project.domain.User;
+import com.project.repository.AccountInfoRepository;
+import com.project.repository.AccountListRepository;
 import com.project.repository.AccountLogRepository;
+import com.project.repository.UserRepository;
 
 @SpringBootTest
 @Transactional
@@ -23,6 +26,15 @@ class SangwooTest {
 	
 	@Autowired
 	AccountLogRepository accountLogRep;
+	
+	@Autowired
+	AccountInfoRepository accountInfoRep;
+	
+	@Autowired
+	UserRepository userRep;
+	
+	@Autowired
+	AccountListRepository accountListRep;
 	
 	@Autowired
 	EntityManager entityManager;
@@ -56,6 +68,22 @@ class SangwooTest {
 			System.out.println(l);
 		}
 		
+	}
+	
+	@Test
+	void accountListSelect() {
+		
+		
+		accountListRep.save(AccountList.builder().accountInfo(accountInfoRep.findById(1).orElse(null))
+				.accountMoney(0)
+				.accountName("깨비즈")
+				.user(userRep.findById(1).orElse(null)).build());
+		
+		List<AccountList> accountList = accountListRep.findAccountListByUserSeq(1);
+		
+		for(AccountList l : accountList) {
+			System.out.println(l);
+		}
 	}
 
 	@Test

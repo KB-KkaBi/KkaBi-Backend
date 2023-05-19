@@ -18,11 +18,7 @@ public interface UserService {
 	 * */
 	User signIn(User user);
 
-	/**
-	 * 로그아웃하기
-	 * @작성자 : 곽승규
-	 * */
-	User logout(int userSeq);
+
 	
 	/**
 	 * 비밀번호 변경하기
@@ -35,6 +31,7 @@ public interface UserService {
 	 * */
 	
 	void updateNickname(User user, String newNickname);
+
 
 }
 

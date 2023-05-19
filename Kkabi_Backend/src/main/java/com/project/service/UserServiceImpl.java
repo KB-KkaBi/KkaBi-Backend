@@ -63,21 +63,7 @@ public class UserServiceImpl implements UserService {
 		return dbUser;
 	}
 	
-	/**
-	 * 로그아웃
-	 * @작성자 : 곽승규
-	 * */
-	@Override
-	public User logout(int userSeq) {
-		//userSeq에 해당하는 회원정보를 조회한다
-		User dbUser = userRep.findById(userSeq).orElse(null);
-		
-		if (dbUser == null)  {
-			throw new RuntimeException("존재하지 않는 이메일로 로그아웃 할 수 없습니다.");
-		}
-		return dbUser;
-	}
-	
+
 	/**
 	 * 이메일 찾기
 	 * */
@@ -103,6 +89,7 @@ public class UserServiceImpl implements UserService {
 		userRep.save(user);
 		
 	}
+
 }
 
 

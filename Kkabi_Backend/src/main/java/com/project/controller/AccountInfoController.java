@@ -11,12 +11,15 @@ import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
 import com.project.service.AccountInfoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class AccountInfoController {
 	@Autowired
 	private AccountInfoService accountInfoService;
 	
 	
+	@ApiOperation(value = "계좌정보조회", notes = "계좌 정보들을 조회할 때 사용함")
 	@GetMapping("/account-info")
 	public List getAccountList() {
 		List<AccountInfo> list= accountInfoService.selectAll();
