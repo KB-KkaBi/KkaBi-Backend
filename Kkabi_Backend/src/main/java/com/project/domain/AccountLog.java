@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.project.dto.AccountLogRequest;
+import com.project.dto.AccountLogRequestDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,7 +59,7 @@ public class AccountLog {
 	 * AccountLogReqeust에서 옮길 생성자
 	 */
 	
-	public AccountLog(AccountLogRequest request) {
+	public AccountLog(AccountLogRequestDTO request) {
 		this.accountLogMoney = request.getAccountLogMoney();
 		this.transactionType = request.getTransactionType();
 		this.transactionReason = request.getTransactionReason();
