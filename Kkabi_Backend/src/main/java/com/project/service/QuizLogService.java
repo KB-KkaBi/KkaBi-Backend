@@ -1,16 +1,17 @@
 package com.project.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.project.domain.QuizLog;
 
 public interface QuizLogService {
 	
 	/**
-	 * 전체 검색 - 페이치 처리
+	 * 내 로그 조회
+	 * 
+	 * @author seojisoosoo
+	 * @return List<QuizLog>
 	 */
-	
-	Page<QuizLog> selectAll(Pageable pageable);
+	List<QuizLog> selectQuizLog(int quizId);
 	
 }

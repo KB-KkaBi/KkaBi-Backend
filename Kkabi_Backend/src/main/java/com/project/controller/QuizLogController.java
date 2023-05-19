@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.service.QuizLogService;
@@ -16,6 +17,6 @@ public class QuizLogController {
 	/**
 	 *  전체 검색 페이지
 	 */
-	@RequestMappping("/quiz-log")
-	public void quizLog()
+	@GetMapping("/quiz-log")
+	public void quizLog();
 }
