@@ -55,4 +55,12 @@ public class User {
 		this.email = email;
 		this.pw = pw;
 	}
+	
+	/**
+	 * 비밀번호 유효성 검사 메서드
+	 * */
+	
+	public boolean isValidPw(String pw) {
+		return this.pw.equals(pw);
+	}
 }

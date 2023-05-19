@@ -4,9 +4,7 @@ package com.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
-
 
 import com.project.domain.User;
 import com.project.repository.UserRepository;
@@ -18,6 +16,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRep;
 	
+	/**
+	 * 이메일 존재 여부 확인 
+	 * */
 	
 	@Override
 	public boolean isEmailExists(String email) {
@@ -30,7 +31,10 @@ public class UserServiceImpl implements UserService {
 		 }
 		
 	}
-
+	
+	/**
+	 * 회원가입
+	 * */
 
 	@Override
 	public User signUp(User user) {
@@ -72,6 +76,32 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("존재하지 않는 이메일로 로그아웃 할 수 없습니다.");
 		}
 		return dbUser;
+	}
+	
+	/**
+	 * 이메일 찾기
+	 * */
+	@Override
+	public User findByEmail(String email) {
+		return userRep.findByEmail(email);
+	}
+
+	@Override
+	public void updatePw(User user, String currentPw, String newPw) throws Exception {
+		if (!user.isValidPw(currentPw)) {
+			throw new Exception("현재 비밀번호가 일치하지 않습니다.");
+		}
+		
+		user.setPw(newPw);
+		userRep.save(user);
+		
+	}
+
+	@Override
+	public void updateNickname(User user, String newNickname) {
+		user.setNickname(newNickname);
+		userRep.save(user);
+		
 	}
 }
 
