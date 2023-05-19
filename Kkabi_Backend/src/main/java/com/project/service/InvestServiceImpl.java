@@ -12,7 +12,6 @@ import com.project.domain.QuizLog;
 import com.project.domain.TreasureInfo;
 import com.project.domain.TreasureLog;
 import com.project.domain.User;
-import com.project.dto.AccountLogRequest;
 import com.project.dto.InvestRequestDTO;
 import com.project.repository.AccountListRepository;
 import com.project.repository.AccountLogRepository;
@@ -36,17 +35,16 @@ public class InvestServiceImpl implements InvestService {
 	private QuizInfoRepository quizInfoRep;
 	@Autowired
 	private TreasureInfoRepository treasureInfoRep;
-	
+
 	@Autowired
 	private AccountListRepository accountListRep;
-	
+
 	@Autowired
 	private QuizLogRepository quizLogRep;
 	@Autowired
 	private TreasureLogRepository treasureLogRep;
 	@Autowired
 	private AccountLogRepository accountLogRep;
-	
 
 	@Override
 	public InvestResult submit(InvestRequestDTO request) {
@@ -63,14 +61,13 @@ public class InvestServiceImpl implements InvestService {
 		quizLogRep.save(quizLog);
 
 		// 3. successed, user_id, treasure_id, count 로 treasure_log insert
-		int treasureDiff = (int) ((request.getCount()) * (successed ? 1 : -1) * treasure.getInterestRate());
-		int treasureTotal = request.getCount() + treasureDiff;
+		int treasureTotal = (int) ((request.getCount()) * (1 + ((successed ? 1 : -1) * treasure.getInterestRate())));
 		TreasureLog treasureLog = new TreasureLog(treasureTotal, user, treasure);
 		treasureLogRep.save(treasureLog);
 
 		// TODO: 4. account log 생성 필요
-		
-		return new InvestResult(successed, treasureDiff);
+
+		return new InvestResult(successed, treasureTotal);
 	}
 
 }
