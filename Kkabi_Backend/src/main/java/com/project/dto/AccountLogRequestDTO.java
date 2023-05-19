@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @ApiModel(description = "AccountLogController의 insertAccountLog에서 entity를 매핑하기 위한 DTO")
-public class AccountLogRequest {
+public class AccountLogRequestDTO {
 	
 	@ApiModelProperty(
 			value = "transaction 후 계좌 잔액"

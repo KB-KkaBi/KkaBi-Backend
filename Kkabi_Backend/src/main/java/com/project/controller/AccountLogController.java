@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 
-import com.project.dto.AccountLogRequest;
-
+import com.project.dto.AccountLogRequestDTO;
 import com.project.service.AccountLogService;
 
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +32,7 @@ public class AccountLogController {
 	 */
 	@PostMapping("/account-log")
 	@ApiOperation(value="계좌 로그 기록 및 내 계좌 업데이트", notes="예금 or 출금 창의 확인 버튼을 누를 시 사용된다.")
-	public AccountLog insertAccountLog(@RequestBody AccountLogRequest request) {
+	public AccountLog insertAccountLog(@RequestBody AccountLogRequestDTO request) {
 	    
 	    AccountLog dbAccountLog = accountLogService.insertAccountLog(new AccountLog(request));
 		
