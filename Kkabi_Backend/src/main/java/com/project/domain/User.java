@@ -57,4 +57,12 @@ public class User {
 		this.email = userDto.getEmail();
 		this.pw = userDto.getPw();
 	}
+	
+	/**
+	 * 비밀번호 유효성 검사 메서드
+	 * */
+	
+	public boolean isValidPw(String pw) {
+		return this.pw.equals(pw);
+	}
 }
