@@ -1,5 +1,7 @@
 package com.project;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -10,9 +12,7 @@ import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
-import com.project.domain.QuizInfo;
 import com.project.domain.QuizLog;
-import com.project.domain.TreasureInfo;
 import com.project.domain.User;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
@@ -75,34 +75,35 @@ class KkabiBackendApplicationTests {
 
 	@Test
 	void quizlogGet() {
-		
-//    	userSeq -> 퀴즈 로그  
-		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
-		entityManager.persist(user);
-
-//    	퀴즈 로그 -> 퀴즈 인포
-		for (int i = 1; i <= 30; i++) {
-			QuizInfo quizInfo = quizInfoRepository
-					.save(QuizInfo.builder().quizId(i).problem("문제" + i).answer("정답" + i).array("배열" + i).build());
-			entityManager.persist(quizInfo);
-		}
-
-
-//	퀴즈 인포 -> treasure 난이도
-		TreasureInfo treasureInfo =treasureInfoRep.save(new TreasureInfo(1, "보물1", 1.0, 100));
-//		treasureInfoRep.save(new TreasureInfo(2, "보물2", 3.0, 300));
-//		treasureInfoRep.save(new TreasureInfo(3, "보물3", 5.0, 500));
-//		treasureInfoRep.save(new TreasureInfo(4, "보물4", 7.0, 700));
-		entityManager.persist(treasureInfo);
-		
-		
-		for (int i = 1; i <= 30; i++) {
-			QuizLog quizLog=quizLogRepository
-					.save(QuizLog.builder().quizLogId(i).success("1").user(user).quizInfo(quizInfo).build());
-			quizLogRepository.save(quizLog);
-		}
-
-		
+		List<QuizLog> quizLogs=quizLogRepository.findAllQuizLog(1);
+			
+////    	userSeq -> 퀴즈 로그  
+//		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
+//		entityManager.persist(user);
+//
+////    	퀴즈 로그 -> 퀴즈 인포
+//		for (int i = 1; i <= 30; i++) {
+//			QuizInfo quizInfo = quizInfoRepository
+//					.save(QuizInfo.builder().quizId(i).problem("문제" + i).answer("정답" + i).array("배열" + i).build());
+//			entityManager.persist(quizInfo);
+//		}
+//
+//
+////	퀴즈 인포 -> treasure 난이도
+//		TreasureInfo treasureInfo =treasureInfoRep.save(new TreasureInfo(1, "보물1", 1.0, 100));
+////		treasureInfoRep.save(new TreasureInfo(2, "보물2", 3.0, 300));
+////		treasureInfoRep.save(new TreasureInfo(3, "보물3", 5.0, 500));
+////		treasureInfoRep.save(new TreasureInfo(4, "보물4", 7.0, 700));
+//		entityManager.persist(treasureInfo);
+//		
+//		
+//		for (int i = 1; i <= 30; i++) {
+//			QuizLog quizLog=quizLogRepository
+//					.save(QuizLog.builder().quizLogId(i).success("1").user(user).quizInfo(quizInfo).build());
+//			quizLogRepository.save(quizLog);
+//		}
+//
+//		
 		
 	}
 }
