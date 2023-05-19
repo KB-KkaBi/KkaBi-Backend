@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.domain.AccountLog;
+import com.project.repository.AccountListRepository;
 import com.project.repository.AccountLogRepository;
 
 @Service
@@ -16,11 +17,16 @@ public class AccountLogServiceImpl implements AccountLogService{
 	
 	@Autowired
 	private AccountLogRepository accountLogRep;
+	
+	@Autowired
+	private AccountListRepository accountListRep;
 
 	@Override
 	public AccountLog insertAccountLog(AccountLog accountLog) {
 		
 		AccountLog accountLogNew = accountLogRep.save(accountLog);
+		
+		accountListRep.updateAccountMoney(accountLog.getAccountLogMoney(), accountLog.getAccountList().getAccountId());
 		
 		return accountLogNew;
 	}
