@@ -29,14 +29,44 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class InvestServiceImpl implements InvestService {
 
+	@Autowired
+	private UserRepository userRep;
+
+	@Autowired
+	private QuizInfoRepository quizInfoRep;
+	@Autowired
+	private TreasureInfoRepository treasureInfoRep;
+	
+	@Autowired
+	private AccountListRepository accountListRep;
+	
+	@Autowired
+	private QuizLogRepository quizLogRep;
+	@Autowired
+	private TreasureLogRepository treasureLogRep;
+	@Autowired
+	private AccountLogRepository accountLogRep;
+	
+
 	@Override
 	public InvestResult submit(InvestRequestDTO request) {
 		// 1. quiz_id, my_answer 둘만 가지고 정답 여부 조회하기
+		QuizInfo quiz = quizInfoRep.findByQuizId(request.getQuizId());
+		boolean successed = request.getAnswer().equals(quiz.getAnswer());
 		// TODO: session에서 받아오는걸로 수정
+		User user = userRep.findById(request.getUserSeq()).orElseGet(null);
+
+		TreasureInfo treasure = treasureInfoRep.findByTreasureId(request.getTreasureId());
 
 		// 2. successed, user_id, quiz_id 로 quiz_log 생성
+		QuizLog quizLog = new QuizLog(successed ? "T" : "F", user, quiz);
+		quizLogRep.save(quizLog);
 
 		// 3. successed, user_id, treasure_id, count 로 treasure_log insert
+		int treasureDiff = (int) ((request.getCount()) * (successed ? 1 : -1) * treasure.getInterestRate());
+		int treasureTotal = request.getCount() + treasureDiff;
+		TreasureLog treasureLog = new TreasureLog(treasureTotal, user, treasure);
+		treasureLogRep.save(treasureLog);
 
 		// TODO: 4. account log 생성 필요
 		
