@@ -12,6 +12,6 @@ public interface QuizLogService {
 	 * @author seojisoosoo
 	 * @return List<QuizLog>
 	 */
-	List<QuizLog> selectQuizLog(int quizId);
+	List<QuizLog> selectQuizLog(int userSeq);
 	
 }

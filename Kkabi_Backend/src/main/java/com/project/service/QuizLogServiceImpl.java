@@ -18,8 +18,8 @@ public class QuizLogServiceImpl implements QuizLogService {
 	private QuizLogRepository quizLogRep;
 	
 	@Override
-	public List<QuizLog> selectQuizLog(int quizId) {
-		List<QuizLog> quizLogList=quizLogRep.findAllQuizLog(quizId);
+	public List<QuizLog> selectQuizLog(int userSeq) {
+		List<QuizLog> quizLogList=quizLogRep.findAllQuizLog(userSeq);
 		
 		return quizLogList;
 	}

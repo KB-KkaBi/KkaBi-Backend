@@ -12,13 +12,16 @@ import org.springframework.test.annotation.Commit;
 
 import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
+import com.project.domain.QuizInfo;
 import com.project.domain.QuizLog;
+import com.project.domain.TreasureInfo;
 import com.project.domain.User;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
 import com.project.repository.QuizInfoRepository;
 import com.project.repository.QuizLogRepository;
 import com.project.repository.TreasureInfoRepository;
+import com.project.repository.UserRepository;
 import com.project.service.QuizLogService;
 
 @SpringBootTest
@@ -43,6 +46,9 @@ class KkabiBackendApplicationTests {
 
 	@Autowired
 	private TreasureInfoRepository treasureInfoRep;
+	
+	@Autowired
+	private UserRepository userRep;
 
 	@Autowired
 	EntityManager entityManager;
@@ -75,25 +81,43 @@ class KkabiBackendApplicationTests {
 
 	@Test
 	void quizlogGet() {
-		List<QuizLog> quizLogs=quizLogRepository.findAllQuizLog(1);
+	//	List<QuizLog> quizLogs=quizLogRepository.findAllQuizLog();
+		TreasureInfo treasure=treasureInfoRep.save(TreasureInfo.builder().treasureName("보물1").interestRate(1.0).price(100).build());
+	
+		
 			
 ////    	userSeq -> 퀴즈 로그  
-//		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
+		User user = userRep.save(User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build());
 //		entityManager.persist(user);
 //
-////    	퀴즈 로그 -> 퀴즈 인포
-//		for (int i = 1; i <= 30; i++) {
-//			QuizInfo quizInfo = quizInfoRepository
-//					.save(QuizInfo.builder().quizId(i).problem("문제" + i).answer("정답" + i).array("배열" + i).build());
-//			entityManager.persist(quizInfo);
-//		}
+    //	퀴즈 로그 -> 퀴즈 인포
+		for (int i = 1; i <= 30; i++) {
+			QuizInfo quizInfo = quizInfoRepository
+					.save(QuizInfo.builder().problem("문제" + i).answer("정답" + i).array("배열" + i).treasureInfo(treasure).build());
+		}
+		
+//		QuizInfo quizInfo = quizInfoRepository
+//				.save(QuizInfo.builder().problem("문제").answer("정답").array("배열").treasureInfo(treasure).build());
+
+		
+		for(int j=1;j<=20;j++) {
+			QuizLog quizLog=quizLogRepository.save(QuizLog.builder().success("1")
+					.quizInfo(quizInfoRepository.findById(j).orElse(null))
+						.user(user).build());
+		}
+		
+		List<QuizLog> quizLogs= quizLogRepository.findAllQuizLog(1);
+		
+		for(QuizLog q : quizLogs) {
+			System.out.println(q);
+		}
 //
 //
 ////	퀴즈 인포 -> treasure 난이도
-//		TreasureInfo treasureInfo =treasureInfoRep.save(new TreasureInfo(1, "보물1", 1.0, 100));
-////		treasureInfoRep.save(new TreasureInfo(2, "보물2", 3.0, 300));
-////		treasureInfoRep.save(new TreasureInfo(3, "보물3", 5.0, 500));
-////		treasureInfoRep.save(new TreasureInfo(4, "보물4", 7.0, 700));
+//		treasureInfoRep.save(new TreasureInfo(1, "보물1", 1.0, 100));
+//		treasureInfoRep.save(new TreasureInfo(2, "보물2", 3.0, 300));
+//		treasureInfoRep.save(new TreasureInfo(3, "보물3", 5.0, 500));
+//		treasureInfoRep.save(new TreasureInfo(4, "보물4", 7.0, 700));
 //		entityManager.persist(treasureInfo);
 //		
 //		
@@ -104,6 +128,7 @@ class KkabiBackendApplicationTests {
 //		}
 //
 //		
+		
 		
 	}
 }
