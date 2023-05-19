@@ -18,6 +18,9 @@ import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
 import com.project.service.AccountListService;
 
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
+
 @RestController
 public class AccountListController {
 	@Autowired
@@ -37,8 +40,15 @@ public class AccountListController {
 		return accountlist;
 	}
 	
+	/**
+	 * 내 모든 계좌 조회하기
+	 * @author awarduuu
+	 * @param sessoin
+	 * @return
+	 */
 	@GetMapping("/get-account-all")
-	public List<AccountList> selectMyAccountList(HttpSession sessoin){
+	@ApiOperation(value="내 모든 계좌 정보 조회", notes="나의 계좌 버튼 클릭 시 내 모든 계좌를 가져올 때 사용된다.")
+	public List<AccountList> selectMyAccountList(@ApiIgnore HttpSession sessoin){
 		
 		User user = (User) sessoin.getAttribute("loginUser");
 				
@@ -48,7 +58,15 @@ public class AccountListController {
 		
 	}
 	
+	/**
+	 * 현재 작업중인 내 계좌 조회하기
+	 * @author awarduuu
+	 * @param accountId
+	 * @return
+	 */
 	@GetMapping("/bank")
+	@ApiOperation(value="작업 중인 계좌 정보 조회", notes="예금 or 출금 성공 시 띄우는 모달창을 확인 누를 시 "
+			+ "은행 페이지로 넘어가면서 사용된다.")
 	public AccountList selectCurrentMyAccount(@RequestParam int accountId) {
 		
 		AccountList accountList = accountListService.selectCurrentMyAccount(accountId);
