@@ -2,6 +2,9 @@ package com.project.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.project.domain.QuizLog;
 
 public interface QuizLogService {
@@ -12,6 +15,5 @@ public interface QuizLogService {
 	 * @author seojisoosoo
 	 * @return List<QuizLog>
 	 */
-	List<QuizLog> selectQuizLog(int userSeq);
-	
+	Page<QuizLog> selectQuizLog(int userSeq, Pageable page);
 }
