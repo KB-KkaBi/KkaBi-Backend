@@ -33,17 +33,24 @@ public class TreasureLog {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "treasure_log_gen")
 	@SequenceGenerator(name = "treasure_log_gen", allocationSize = 1, sequenceName = "treasure_log_gen")
 	private int treasureLogId;
-	
+
 	@CreationTimestamp
 	private LocalDateTime treasureLogDate;
-		
+
 	private int cnt;
-	
-	@JoinColumn(name="user_seq")
+
+	@JoinColumn(name = "user_seq")
 	@ManyToOne
 	private User user;
-	
-	@JoinColumn(name="treasure_id")
+
+	@JoinColumn(name = "treasure_id")
 	@ManyToOne
 	private TreasureInfo treasureInfo;
+
+	public TreasureLog(int cnt, User user, TreasureInfo treasureInfo) {
+		this.cnt = cnt;
+		this.user = user;
+		this.treasureInfo = treasureInfo;
+	}
+
 }
