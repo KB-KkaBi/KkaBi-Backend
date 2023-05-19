@@ -3,6 +3,10 @@ package com.project.service;
 import com.project.domain.User;
 
 public interface UserService {
+	
+
+	boolean isEmailExists(String email);
+	User signUp(User user);
 
 	/**
 	 * 로그인하기
@@ -10,5 +14,4 @@ public interface UserService {
 	 * */
 	User signIn(User user);
 
-	
 }

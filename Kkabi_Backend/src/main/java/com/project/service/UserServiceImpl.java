@@ -1,19 +1,42 @@
 package com.project.service;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
+
 
 import com.project.domain.User;
 import com.project.repository.UserRepository;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
-
+public class UserServiceImpl implements UserService {
+	
 	@Autowired
 	private UserRepository userRep;
+	
+	
+	@Override
+	public boolean isEmailExists(String email) {
+		 User user = userRep.findByEmail(email);
+		 
+		 if(user != null) {
+			 throw new RuntimeException("이미 존재하는 이메일입니다.");
+		 }else {
+			return false; 
+		 }
+		
+	}
+
+
+	@Override
+	public User signUp(User user) {
+		User users = userRep.save(user);
+		return users;
+	}
 	
 	/**
 	 * 로그인
@@ -36,7 +59,6 @@ public class UserServiceImpl implements UserService{
 		return dbUser;
 	}
 	
-	
-	
-
 }
+
+
