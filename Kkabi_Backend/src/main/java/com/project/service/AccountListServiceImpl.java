@@ -10,6 +10,9 @@ import com.project.domain.AccountLog;
 import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
 import com.project.repository.AccountListRepository;
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 @Service
@@ -25,6 +28,26 @@ public class AccountListServiceImpl implements AccountListService {
 		AccountList accountListNew=accountListRep.save(accountList);
 		                           
 		return accountListNew;
+	}
+
+	@Override
+	public List<AccountList> selectMyAccountList(int userSeq) {
+		
+		List<AccountList> myAccountList = accountListRep.findAccountListByUserSeq(userSeq);
+		
+		return myAccountList;
+	}
+
+	@Override
+	public AccountList selectCurrentMyAccount(int accountId) {
+		
+		AccountList currentAccount = accountListRep.findById(accountId).orElse(null);
+		
+		if(currentAccount == null) {
+			 throw new RuntimeException("현재 계좌가 존재하지 않습니다.^^");
+		 }
+		
+		return currentAccount;
 	}
 
 }
