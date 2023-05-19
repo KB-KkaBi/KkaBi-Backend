@@ -14,10 +14,4 @@ public interface UserService {
 	 * */
 	User signIn(User user);
 
-	/**
-	 * 로그아웃하기
-	 * @작성자 : 곽승규
-	 * */
-	User logout(int userSeq);
-
 }

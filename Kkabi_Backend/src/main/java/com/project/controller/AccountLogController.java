@@ -16,6 +16,8 @@ import com.project.dto.AccountLogRequest;
 
 import com.project.service.AccountLogService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class AccountLogController {
 	
@@ -23,13 +25,14 @@ public class AccountLogController {
 	private AccountLogService accountLogService;
 	
 	/**
-	 * 예금, 출금 이벤트로 post 요청이 오면 accountLog를 기록하는 method
+	 * 
 	 * 
 	 * @author awarduuu
 	 * @param request
 	 * @return 프론트에서 받을 AccountLog
 	 */
 	@PostMapping("/account-log")
+	@ApiOperation(value="계좌 로그 기록 및 내 계좌 업데이트", notes="예금 or 출금 창의 확인 버튼을 누를 시 사용된다.")
 	public AccountLog insertAccountLog(@RequestBody AccountLogRequest request) {
 	    
 	    AccountLog dbAccountLog = accountLogService.insertAccountLog(new AccountLog(request));
@@ -38,13 +41,14 @@ public class AccountLogController {
 	}
 	
 	/**
-	 * 내 계좌 조회 버튼으로 get 요청이 오면 해당 계좌의 모든 accountLog를 불러와준다.
+	 * 
 	 * 
 	 * @author awarduuu
 	 * @param accountId
 	 * @return 조회된 accountLog의 리스트
 	 */
 	@GetMapping("/account-log")
+	@ApiOperation(value="내 계좌 로그 조회", notes="내역 확인 버튼을 누를 시 사용된다.")
 	public List<AccountLog> selectAccountLog(int accountId){
 		
 		List<AccountLog> accountLogList = accountLogService.selectAccoungLog(accountId);
