@@ -48,4 +48,9 @@ public class QuizLog {
 	@ManyToOne
 	private QuizInfo quizInfo;
 
+	public QuizLog(String success, User user, QuizInfo quizInfo) {
+		this.success = success;
+		this.user = user;
+		this.quizInfo = quizInfo;
+	}
 }
