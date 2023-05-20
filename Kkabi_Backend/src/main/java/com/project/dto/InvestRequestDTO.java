@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class InvestRequestDTO {
+	private int accountId;
 	private int quizId;
 	private int treasureId;
 	private int count;

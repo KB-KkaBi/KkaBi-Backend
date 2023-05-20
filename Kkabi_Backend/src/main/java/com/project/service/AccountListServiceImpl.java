@@ -50,4 +50,10 @@ public class AccountListServiceImpl implements AccountListService {
 		return currentAccount;
 	}
 
+	@Override
+	public boolean checkMyAccountMoney(AccountList accountList) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

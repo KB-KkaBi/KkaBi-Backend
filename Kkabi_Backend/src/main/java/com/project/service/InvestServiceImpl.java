@@ -48,9 +48,11 @@ public class InvestServiceImpl implements InvestService {
 
 	@Override
 	public InvestResult submit(InvestRequestDTO request) {
+		
 		// 1. quiz_id, my_answer 둘만 가지고 정답 여부 조회하기
 		QuizInfo quiz = quizInfoRep.findByQuizId(request.getQuizId());
 		boolean successed = request.getAnswer().equals(quiz.getAnswer());
+		
 		// TODO: session에서 받아오는걸로 수정
 		User user = userRep.findById(request.getUserSeq()).orElseGet(null);
 

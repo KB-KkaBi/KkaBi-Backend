@@ -25,5 +25,5 @@ public interface AccountListService {
 	  * @return AccountList
 	  */
 	 AccountList selectCurrentMyAccount(int accountId);
-	 
+	
 }
