@@ -57,38 +57,24 @@ public class AccountLogServiceImpl implements AccountLogService{
 		if(accountList != null) {
 			for(AccountList l : accountList) {
 				
-				int accountInfoId = l.getAccountInfo().getAccountInfoId();
+				String accountType = l.getAccountInfo().getAccountType();
 				String status = l.getStatus();
+				int dueDate = l.getAccountInfo().getDueDate();
 				LocalDate current = LocalDate.now();
 				
 				// 2. 내 계좌가 활성화 되어있다면
 				if(status.equals("1")) {
-					// 3-1. 계좌가 깨비 미래 적금이라면
-					if(accountInfoId == 1) {
+					// 3. 적금이라면
+					if(accountType.contains("적금")) {
 						// 4. 현재 날짜가 적금만기일 다음이라면
-						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(12))) {
+						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(dueDate))) {
+							
 							// 내 계좌 업데이트
 							int interest =(int)(l.getAccountMoney() * (l.getAccountInfo().getInterestRate()));
 							l.setAccountMoney(l.getAccountMoney() + interest);
 							l.setStatus("2");
 							
 							// 계좌 로그 기록
-							accountLogRep.save(AccountLog.builder()
-									.accountList(l)
-									.accountLogMoney(l.getAccountMoney() + interest)
-									.transactionAmount(interest)
-									.transactionReason("만기 이자")
-									.transactionType("이자")
-									.build());
-						}
-					}
-					// 3-2. 계좌가 깨비 young 적금이라면
-					else if(accountInfoId == 2) {
-						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(6))) {
-							int interest =(int)(l.getAccountMoney() * (l.getAccountInfo().getInterestRate()));
-							l.setAccountMoney(l.getAccountMoney() + interest);
-							l.setStatus("2");
-							
 							accountLogRep.save(AccountLog.builder()
 									.accountList(l)
 									.accountLogMoney(l.getAccountMoney() + interest)
