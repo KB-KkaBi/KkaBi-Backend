@@ -14,14 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class InvestRequestDTO {
-	private int accountId;
+	
 	private int quizId;
 	private int treasureId;
 	private int count;
 	private String answer;
-	
-	/**
-	 * TODO: 제거해야 할 코드
-	 */
-	private int userSeq;
 }

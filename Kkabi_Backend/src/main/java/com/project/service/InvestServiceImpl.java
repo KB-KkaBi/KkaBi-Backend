@@ -67,8 +67,6 @@ public class InvestServiceImpl implements InvestService {
 		TreasureLog treasureLog = new TreasureLog(treasureTotal, user, treasure);
 		treasureLogRep.save(treasureLog);
 
-		// TODO: 4. account log 생성 필요
-
 		return new InvestResult(successed, treasureTotal);
 	}
 
