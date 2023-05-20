@@ -48,7 +48,8 @@ public class AccountLogServiceImpl implements AccountLogService{
 
 	
 	@Override
-	@Scheduled(cron = "0 0 0 * * *")
+//	@Scheduled(cron = "0 0 0 * * *")
+//	@Scheduled(cron = "10 * * * * *")
 	public void insertAccountLogForInterest() {
 		
 		// 모든 계좌를 가져온다.
@@ -57,6 +58,7 @@ public class AccountLogServiceImpl implements AccountLogService{
 		if(accountList != null) {
 			for(AccountList l : accountList) {
 				
+				System.out.println(l);
 				String accountType = l.getAccountInfo().getAccountType();
 				String status = l.getStatus();
 				int dueDate = l.getAccountInfo().getDueDate();
@@ -67,12 +69,13 @@ public class AccountLogServiceImpl implements AccountLogService{
 					// 3. 적금이라면
 					if(accountType.contains("적금")) {
 						// 4. 현재 날짜가 적금만기일 다음이라면
-						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(dueDate))) {
+//						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(dueDate))) {
+						
+						System.out.println(current);
+						System.out.println(l.getCreatedAt().toLocalDate().plusDays(dueDate));
+						if(current.isEqual(l.getCreatedAt().toLocalDate().plusDays(0))) {
 							
-							// 내 계좌 업데이트
 							int interest =(int)(l.getAccountMoney() * (l.getAccountInfo().getInterestRate()));
-							l.setAccountMoney(l.getAccountMoney() + interest);
-							l.setStatus("2");
 							
 							// 계좌 로그 기록
 							accountLogRep.save(AccountLog.builder()
@@ -82,6 +85,16 @@ public class AccountLogServiceImpl implements AccountLogService{
 									.transactionReason("만기 이자")
 									.transactionType("이자")
 									.build());
+							
+							// 내 계좌 업데이트
+							
+							l.setAccountMoney(l.getAccountMoney() + interest);
+							l.setStatus("2");
+							accountListRep.save(l);
+							
+							
+							
+							System.out.println("이자 지급 완료");
 						}
 					}
 				}
