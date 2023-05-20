@@ -62,13 +62,14 @@ private UserService userService;
 	/**
 	 * 패스워드 변경하기
 	 * */
-	@PostMapping("/update-password") //???
-	public Map<String, String> updatePassword( //??
+	@PostMapping("/update-password") 
+	public Map<String, String> updatePassword( 
 			HttpSession session,			//@PathVariable("email") String email, 
 			@RequestBody Map<String, String> request
 	) {
 		Map<String, String> response = new HashMap<>();
 		
+		//이메일을 session에서 확인
 		try {
 			User user  =(User) session.getAttribute("loginUser");
 			User dbUser = userService.findByEmail(user.getEmail());
@@ -87,13 +88,15 @@ private UserService userService;
 	/** 
 	 * 닉네임 변경하기
 	 * */
-	@PostMapping("/update-nickname") //???
-	public Map<String, String> updateNickname( //??
+	@PostMapping("/update-nickname") 
+	public Map<String, String> updateNickname( 
 			HttpSession session,
 			@RequestParam("newNickname") String newNickname
 	) {
+		//MAP 생성
 		Map<String, String> response = new HashMap<>();
 		
+		//이메일을 session에서 확인
 		User user = (User) session.getAttribute("loginUser");
 		User dbUser = userService.findByEmail(user.getEmail());
 		userService.updateNickname(dbUser, newNickname);
