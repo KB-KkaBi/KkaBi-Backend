@@ -21,9 +21,9 @@ public class InvestController {
 	private InvestService investService;
 	
 	@PostMapping("/invest")
-	public InvestResult invest(@RequestBody InvestRequestDTO request) {
-		
-		InvestResult result = investService.submit(request);
+	public InvestResult invest(@RequestBody InvestRequestDTO request, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		InvestResult result = investService.submit(request, user.getUserSeq());
 		return result;
 	}
 }
