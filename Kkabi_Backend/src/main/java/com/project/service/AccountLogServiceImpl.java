@@ -20,23 +20,25 @@ public class AccountLogServiceImpl implements AccountLogService{
 	
 	@Autowired
 	private AccountListRepository accountListRep;
+	
+	@Autowired
+	private AccountListService accountListService;
 
 	@Override
 	public AccountLog insertAccountLog(AccountLog accountLog){
 		
 		int accountId = accountLog.getAccountList().getAccountId();
 		
-//		int accountMoney = accountListRep.findById(accountId).orElse(null).getAccountMoney();
-//		
-//		if((accountLog.getTransactionAmount() * -1) > accountMoney) {
-//			throw new RuntimeException("잔액이 부족합니다.");
-//		}
+		if(!accountListService.checkMyAccountMoney(accountId, (accountLog.getTransactionAmount() * -1))) {
+			throw new RuntimeException("잔액이 부족합니다.");
+		}else {
+			AccountLog accountLogNew = accountLogRep.save(accountLog);
+			
+			accountListRep.updateAccountMoney(accountLog.getAccountLogMoney(), accountId);
+			
+			return accountLogNew;
+		}
 		
-		AccountLog accountLogNew = accountLogRep.save(accountLog);
-		
-		accountListRep.updateAccountMoney(accountLog.getAccountLogMoney(), accountId);
-		
-		return accountLogNew;
 	}
 	
 
