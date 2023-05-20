@@ -26,11 +26,11 @@ public class AccountLogServiceImpl implements AccountLogService{
 		
 		int accountId = accountLog.getAccountList().getAccountId();
 		
-		int accountMoney = accountListRep.findById(accountId).orElse(null).getAccountMoney();
-		
-		if((accountLog.getTransactionAmount() * -1) > accountMoney) {
-			throw new RuntimeException("잔액이 부족합니다.");
-		}
+//		int accountMoney = accountListRep.findById(accountId).orElse(null).getAccountMoney();
+//		
+//		if((accountLog.getTransactionAmount() * -1) > accountMoney) {
+//			throw new RuntimeException("잔액이 부족합니다.");
+//		}
 		
 		AccountLog accountLogNew = accountLogRep.save(accountLog);
 		

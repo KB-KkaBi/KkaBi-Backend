@@ -32,6 +32,6 @@ public interface AccountListService {
 	  * @param accountList
 	  * @return 사용할 돈이 잔액보다 많으면 false, 아니면 true
 	  */
-	 boolean checkMyAccountMoney(AccountList accountList);
+	 boolean checkMyAccountMoney(int accoundId, int transactionAmount);
 	 
 }

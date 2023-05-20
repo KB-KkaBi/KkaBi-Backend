@@ -51,9 +51,11 @@ public class AccountListServiceImpl implements AccountListService {
 	}
 
 	@Override
-	public boolean checkMyAccountMoney(AccountList accountList) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkMyAccountMoney(int accountId, int tranactionAmount) {
+		if(tranactionAmount > accountListRep.findById(accountId).orElse(null).getAccountMoney()) {
+			return false;
+		}
+		return true;
 	}
 
 }
