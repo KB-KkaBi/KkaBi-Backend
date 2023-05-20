@@ -35,6 +35,8 @@ public class AccountInfo {
 	@Column(length = 300)
 	private String information;
 	
+	private int dueDate;
+	
 	public AccountInfo(int accountInfoId) {
 		this.accountInfoId = accountInfoId;
 	}

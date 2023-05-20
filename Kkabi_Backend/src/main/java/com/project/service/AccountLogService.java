@@ -27,7 +27,7 @@ public interface AccountLogService {
 	 * 매일 00시에 확인하여 적금 만기 시 로그 기록
 	 * 
 	 * @author awarduuu
-	 * @param userSeq
+	 * 
 	 */
-	void insertAccountLogForInterest(int userSeq);
+	void insertAccountLogForInterest();
 }

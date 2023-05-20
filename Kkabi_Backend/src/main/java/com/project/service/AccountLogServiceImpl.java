@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import com.project.repository.AccountLogRepository;
 
 @Service
 @Transactional
+@EnableScheduling
 public class AccountLogServiceImpl implements AccountLogService{
 	
 	@Autowired
@@ -47,11 +49,11 @@ public class AccountLogServiceImpl implements AccountLogService{
 	
 	@Override
 	@Scheduled(cron = "0 0 0 * * *")
-	public void insertAccountLogForInterest(int userSeq) {
+	public void insertAccountLogForInterest() {
 		
-		List<AccountList> accountList = accountListRep.findAccountListByUserSeq(userSeq);
+		// 모든 계좌를 가져온다.
+		List<AccountList> accountList = accountListRep.findAll();
 		
-		// 1. 가져온 내 계좌가 있다면
 		if(accountList != null) {
 			for(AccountList l : accountList) {
 				
