@@ -25,9 +25,9 @@ public class AccountListServiceImpl implements AccountListService {
 	@Override
 	public AccountList insertNewAccount(AccountList accountList) {		
 
-		AccountList accountLisNew=accountListRep.save(accountList);
+		AccountList accountListNew=accountListRep.save(accountList);
 		                           
-		return accountLisNew;
+		return accountListNew;
 	}
 
 	@Override
