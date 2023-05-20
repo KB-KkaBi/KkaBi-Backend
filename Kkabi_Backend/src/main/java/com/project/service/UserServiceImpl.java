@@ -71,7 +71,11 @@ public class UserServiceImpl implements UserService {
 	public User findByEmail(String email) {
 		return userRep.findByEmail(email);
 	}
-
+	
+	
+	/**
+	 * 비밀번호 변경
+	 * */
 	@Override
 	public void updatePw(User user, String currentPw, String newPw) throws Exception {
 		if (!user.isValidPw(currentPw)) {
@@ -82,7 +86,11 @@ public class UserServiceImpl implements UserService {
 		userRep.save(user);
 		
 	}
-
+	
+	
+	/**
+	 * 닉네임 변경 
+	 * */
 	@Override
 	public void updateNickname(User user, String newNickname) {
 		user.setNickname(newNickname);

@@ -13,10 +13,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	User findByEmail(String email);
 	
 	/**
-	 * 이메일 존재여부와 닉네임 및
+	 * 이메일 존재여부와 닉네임과
 	 * 비밀번호 변경을 위한 이메일 찾기
 	 * */
-		
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 		User findByEmailJPQL(@Param("email") String email);
 	
