@@ -2,6 +2,9 @@ package com.project.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.project.domain.AccountLog;
 
 public interface AccountLogService {
@@ -19,7 +22,7 @@ public interface AccountLogService {
 	 * 
 	 * @author awarduuu
 	 * @param accountId
-	 * @return List<AccountLog>
+	 * @return Page<AccountLog>
 	 */
-	List<AccountLog> selectAccoungLog(int accountId);
+	Page<AccountLog> selectAccoungLog(int accountId, Pageable page);
 }

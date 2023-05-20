@@ -4,6 +4,8 @@ package com.project.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +35,9 @@ public class AccountLogServiceImpl implements AccountLogService{
 	
 
 	@Override
-	public List<AccountLog> selectAccoungLog(int accountId) {
+	public Page<AccountLog> selectAccoungLog(int accountId, Pageable page) {
 		
-		List<AccountLog> accountLogList = accountLogRep.findAllByAccountListJPQL(accountId);
+		Page<AccountLog> accountLogList = accountLogRep.findAllByAccountListJPQL(accountId, page);
 		
 		return accountLogList;
 	}
