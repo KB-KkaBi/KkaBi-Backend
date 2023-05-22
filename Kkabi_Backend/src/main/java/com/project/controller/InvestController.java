@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.domain.InvestResult;
+import com.project.domain.User;
 import com.project.dto.InvestRequestDTO;
 import com.project.service.InvestService;
 
@@ -21,7 +22,8 @@ public class InvestController {
 	
 	@PostMapping("/invest")
 	public InvestResult invest(@RequestBody InvestRequestDTO request, HttpSession session) {
-		InvestResult result = investService.submit(request);
+		User user = (User) session.getAttribute("loginUser");
+		InvestResult result = investService.submit(request, user.getUserSeq());
 		return result;
 	}
 }

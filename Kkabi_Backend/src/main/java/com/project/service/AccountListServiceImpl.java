@@ -1,6 +1,7 @@
 package com.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,14 @@ public class AccountListServiceImpl implements AccountListService {
 		 }
 		
 		return currentAccount;
+	}
+
+	@Override
+	public boolean checkMyAccountMoney(int accountId, int tranactionAmount) {
+		if(tranactionAmount > accountListRep.findById(accountId).orElse(null).getAccountMoney()) {
+			return false;
+		}
+		return true;
 	}
 
 }

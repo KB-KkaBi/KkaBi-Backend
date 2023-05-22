@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -21,6 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class AccountInfo {
 	
 	@Id
@@ -34,6 +36,8 @@ public class AccountInfo {
 	
 	@Column(length = 300)
 	private String information;
+	
+	private int dueDate;
 	
 	public AccountInfo(int accountInfoId) {
 		this.accountInfoId = accountInfoId;

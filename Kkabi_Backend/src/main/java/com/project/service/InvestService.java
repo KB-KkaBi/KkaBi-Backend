@@ -5,6 +5,6 @@ import com.project.dto.InvestRequestDTO;
 
 public interface InvestService {
 
-	InvestResult submit(InvestRequestDTO request);
+	InvestResult submit(InvestRequestDTO request, int userSeq);
 
 }

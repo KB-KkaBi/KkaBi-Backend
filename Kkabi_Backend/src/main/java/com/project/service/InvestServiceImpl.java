@@ -47,12 +47,14 @@ public class InvestServiceImpl implements InvestService {
 	private AccountLogRepository accountLogRep;
 
 	@Override
-	public InvestResult submit(InvestRequestDTO request) {
+	public InvestResult submit(InvestRequestDTO request, int userSeq) {
+		
 		// 1. quiz_id, my_answer 둘만 가지고 정답 여부 조회하기
 		QuizInfo quiz = quizInfoRep.findByQuizId(request.getQuizId());
 		boolean successed = request.getAnswer().equals(quiz.getAnswer());
+		
 		// TODO: session에서 받아오는걸로 수정
-		User user = userRep.findById(request.getUserSeq()).orElseGet(null);
+		User user = userRep.findById(userSeq).orElseGet(null);
 
 		TreasureInfo treasure = treasureInfoRep.findByTreasureId(request.getTreasureId());
 
@@ -64,8 +66,6 @@ public class InvestServiceImpl implements InvestService {
 		int treasureTotal = (int) ((request.getCount()) * (1 + ((successed ? 1 : -1) * treasure.getInterestRate())));
 		TreasureLog treasureLog = new TreasureLog(treasureTotal, user, treasure);
 		treasureLogRep.save(treasureLog);
-
-		// TODO: 4. account log 생성 필요
 
 		return new InvestResult(successed, treasureTotal);
 	}

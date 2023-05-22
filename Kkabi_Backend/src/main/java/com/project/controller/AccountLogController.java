@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,5 +61,13 @@ public class AccountLogController {
 		return accountLogList;
 	}
 	
+	/**
+	 * @author awarduuu
+	 */
+	@ApiOperation(value="모든 계좌 이자 지급" ,notes="매일 0시 0분 1초에 모든 계좌를 확인하여 이자를 지급할 때 사용된다.")
+	@Scheduled(cron = "1 0 0 * * *")
+	public void insertAccountLogForInterest() {
+		accountLogService.insertAccountLogForInterest();
+	}
 
 }
