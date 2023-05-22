@@ -25,4 +25,12 @@ public interface AccountListService {
 	  */
 	 AccountList selectCurrentMyAccount(int accountId);
 	 
+	 /**
+	  * 내 계좌 잔액을 체크하여 출금할 수 있을지 확인하는 메소드
+	  * @author awarduuu
+	  * @param accountList
+	  * @return 사용할 돈이 잔액보다 많으면 false, 아니면 true
+	  */
+	 boolean checkMyAccountMoney(int accoundId, int transactionAmount);
+	 
 }

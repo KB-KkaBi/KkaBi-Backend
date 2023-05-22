@@ -51,4 +51,12 @@ public class AccountListServiceImpl implements AccountListService {
 		return currentAccount;
 	}
 
+	@Override
+	public boolean checkMyAccountMoney(int accountId, int tranactionAmount) {
+		if(tranactionAmount > accountListRep.findById(accountId).orElse(null).getAccountMoney()) {
+			return false;
+		}
+		return true;
+	}
+
 }
