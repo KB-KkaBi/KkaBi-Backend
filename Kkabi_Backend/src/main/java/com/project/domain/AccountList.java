@@ -30,7 +30,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(exclude = {"user","accountInfo"})
+@ToString
 public class AccountList {
 	
 	@Id
