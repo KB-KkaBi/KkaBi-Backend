@@ -130,7 +130,7 @@ private UserService userService;
 		HashMap<String, Object> users = new LinkedHashMap<String, Object>();
 		users.put("userSeq", dbUser.getUserSeq());
 		users.put("nickname", dbUser.getNickname());
-		users.put("character", dbUser.getCharacter());
+		users.put("character", dbUser.getCharacters());
 
 
 		//response할 객체 생성

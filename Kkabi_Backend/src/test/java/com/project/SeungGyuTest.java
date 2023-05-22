@@ -47,7 +47,7 @@ class SeungGyuTest {
 		User user = User.builder()
 				.email("tmdrb0912@naver.com")
 				.pw("1234")
-				.character("깨비")
+				.characters("깨비")
 				.nickname("승구")
 				.build();
 		userRep.save(user);

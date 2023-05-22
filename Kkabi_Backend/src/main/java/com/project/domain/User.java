@@ -42,7 +42,7 @@ public class User {
 	private String nickname;
 	
 	@Column(length = 50)
-	private String character;
+	private String characters;
 	
 	/**
 	 * user로 접근하기 위한 생성자
