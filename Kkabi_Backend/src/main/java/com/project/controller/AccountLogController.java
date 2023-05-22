@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.ui.Model;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,9 +52,11 @@ public class AccountLogController {
 	 */
 	@GetMapping("/account-log")
 	@ApiOperation(value="내 계좌 로그 조회", notes="내역 확인 버튼을 누를 시 사용된다.")
-	public List<AccountLog> selectAccountLog(int accountId){
+	public Page<AccountLog> selectAccountLog(int accountId, Model model, Pageable page){
 		
-		List<AccountLog> accountLogList = accountLogService.selectAccoungLog(accountId);
+		Page<AccountLog> accountLogList = accountLogService.selectAccoungLog(accountId, page);
+		
+		model.addAttribute("accountLogList", accountLogList);
 		
 		return accountLogList;
 	}

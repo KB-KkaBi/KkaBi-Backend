@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -49,9 +51,9 @@ public class AccountLogServiceImpl implements AccountLogService{
 	
 
 	@Override
-	public List<AccountLog> selectAccoungLog(int accountId) {
+	public Page<AccountLog> selectAccoungLog(int accountId, Pageable page) {
 		
-		List<AccountLog> accountLogList = accountLogRep.findAllByAccountListJPQL(accountId);
+		Page<AccountLog> accountLogList = accountLogRep.findAllByAccountListJPQL(accountId, page);
 		
 		return accountLogList;
 	}

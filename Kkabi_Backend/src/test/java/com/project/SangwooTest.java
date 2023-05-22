@@ -7,12 +7,16 @@ import javax.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.domain.AccountInfo;
 import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
+import com.project.domain.QuizLog;
 import com.project.domain.User;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
@@ -61,12 +65,16 @@ class SangwooTest {
 	
 	@Test
 	void accountLogSelect() {
+		for(int j=1;j<=20;j++) {
+			accountLogRep.save(AccountLog.builder().accountLogMoney(10000)
+					.accountList(accountListRep.findById(1).orElse(null))
+					.transactionAmount(-1000)
+					.transactionReason("과자")
+					.transactionType("1").build());
+		}		
 		
-		List<AccountLog> logList = accountLogRep.findAllByAccountListJPQL(1);
-		
-		for(AccountLog l : logList) {
-			System.out.println(l);
-		}
+//		Pageable page = PageRequest.of(1, 10);
+//		Page<AccountLog> logList = accountLogRep.findAllByAccountListJPQL(1, page);
 		
 	}
 	
