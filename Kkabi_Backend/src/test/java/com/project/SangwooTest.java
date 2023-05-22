@@ -46,7 +46,7 @@ class SangwooTest {
 	
 	@Test
 	void accountLogInsert() {
-		User user = User.builder().email("awar_uu6@naver.com").pw("12345").characters("깨비1").nickname("어월두2").build();
+		User user = User.builder().email("awar_uu6@naver.com").pw("12345").character("깨비1").nickname("어월두2").build();
 		entityManager.persist(user);
 		AccountInfo info = AccountInfo.builder().accountType("적금").interestRate(0.07).information("좋은 적금").build();
 		entityManager.persist(info);

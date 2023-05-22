@@ -41,8 +41,8 @@ public class User {
 	@Column(length = 30)
 	private String nickname;
 	
-	@Column(length = 50)
-	private String characters;
+	@Column(length = 50, name="characters")
+	private String character;
 	
 	/**
 	 * user로 접근하기 위한 생성자

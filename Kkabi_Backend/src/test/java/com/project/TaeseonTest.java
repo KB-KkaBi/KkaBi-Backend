@@ -27,7 +27,7 @@ class TaeseonTest {
 				  .email("abc@naver.com")
 				  .pw("1234")
 				  .nickname("쿵야")
-				  .characters("치라차차")
+				  .character("치라차차")
 				  .build()
 				  );
 		}
@@ -40,7 +40,7 @@ class TaeseonTest {
                 	.email(email)
                 	.pw("1234")
                 	.nickname("쿵야")
-                	.characters("치라차차")
+                	.character("치라차차")
                 	.build();
 	
 	}

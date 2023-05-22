@@ -74,7 +74,7 @@ class KkabiBackendApplicationTests {
 
 	@Test
 	void accountListInsert() {
-		User user = User.builder().email("soosoo@naver.com").pw("1234").characters("루나키키").nickname("헬로우").build();
+		User user = User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build();
 		entityManager.persist(user);
 		AccountList list = AccountList.builder().accountName("감자").accountMoney(10000).status("1").user(user)
 				.accountInfo(accountInfoRep.findById(1).orElse(null)).build();
@@ -89,7 +89,7 @@ class KkabiBackendApplicationTests {
 		
 			
 ////    	userSeq -> 퀴즈 로그  
-		User user = userRep.save(User.builder().email("soosoo@naver.com").pw("1234").characters("루나키키").nickname("헬로우").build());
+		User user = userRep.save(User.builder().email("soosoo@naver.com").pw("1234").character("루나키키").nickname("헬로우").build());
 //		entityManager.persist(user);
 //
     //	퀴즈 로그 -> 퀴즈 인포
