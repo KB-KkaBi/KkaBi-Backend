@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.domain.User;
+import com.project.dto.DetailMoneyDTO;
+import com.project.dto.DetailTreasureDTO;
+import com.project.dto.UserResponseDTO;
+import com.project.repository.AccountListRepository;
 import com.project.repository.UserRepository;
 
 @Service
@@ -15,6 +19,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRep;
+	
+	@Autowired
+	private AccountListRepository accountListRep;
 	
 	/**
 	 * 이메일 존재 여부 확인 
@@ -96,6 +103,30 @@ public class UserServiceImpl implements UserService {
 		user.setNickname(newNickname);
 		userRep.save(user);
 		
+	}
+
+	@Override
+	public UserResponseDTO findUserInfo(int userSeq) {
+		
+		User user = userRep.findById(userSeq).orElse(null);
+		
+		UserResponseDTO userInfo = new UserResponseDTO();
+		DetailMoneyDTO detailMoney = new DetailMoneyDTO();
+		DetailTreasureDTO detailTreasure = new DetailTreasureDTO();
+		
+		// detailMoney 만드는 과정 -> AccountListService로 옮길 예정
+		detailMoney.setTotalDeposit(accountListRep.selectSumOfMyDepositJPQL(userSeq));
+		detailMoney.setTotalSavings(accountListRep.selectSumOfMySavingsJPQL(userSeq));
+		
+		// detailTreasure 만드는 과정 -> TreasureLog로 옮길 예정
+		
+		// 준비물을 가지고 userInfo Setting
+		userInfo.setCharacter(user.getCharacter());
+		userInfo.setNickname(user.getNickname());
+		userInfo.setDetailMoney(detailMoney);
+		userInfo.setDetailTreasure(detailTreasure);
+		
+		return userInfo;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.domain.User;
+import com.project.dto.UserResponseDTO;
 
 public interface UserService {
 	User findByEmail(String email);
@@ -31,6 +32,16 @@ public interface UserService {
 	 * */
 	
 	void updateNickname(User user, String newNickname);
+	
+	/**
+	 * @author awarduuu
+	 * 
+	 * 메인페이지, 마이페이지에 랜딩될 때 유저 정보 제공
+	 * 
+	 * @param userSeq
+	 * @return UserResponseDTO
+	 */
+	UserResponseDTO findUserInfo(int userSeq);
 
 
 }
