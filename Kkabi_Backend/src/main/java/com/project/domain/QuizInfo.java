@@ -38,6 +38,8 @@ public class QuizInfo {
 
 	@Column(length = 100)
 	private String array;
+	
+	private String hint;
 
 	@JoinColumn(name = "treasure_id")
 	@ManyToOne

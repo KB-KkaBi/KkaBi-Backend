@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.domain.User;
+import com.project.dto.DetailMoneyDTO;
+import com.project.dto.DetailTreasureDTO;
+import com.project.dto.UserInfoResponseDTO;
+import com.project.repository.AccountListRepository;
 import com.project.repository.UserRepository;
 
 @Service
@@ -15,6 +19,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRep;
+	
+	@Autowired
+	private AccountListService accountListService;
+	
+	@Autowired
+	private TreasureLogService treasureLogService;
 	
 	/**
 	 * 이메일 존재 여부 확인 
@@ -96,6 +106,22 @@ public class UserServiceImpl implements UserService {
 		user.setNickname(newNickname);
 		userRep.save(user);
 		
+	}
+
+	@Override
+	public UserInfoResponseDTO findUserInfo(int userSeq) {
+		
+		User user = userRep.findById(userSeq).orElse(null);
+		
+		UserInfoResponseDTO userInfo = new UserInfoResponseDTO();
+				
+		// 준비물을 가지고 userInfo Setting
+		userInfo.setCharacter(user.getCharacter());
+		userInfo.setNickname(user.getNickname());
+		userInfo.setDetailMoney(accountListService.findDetailMoney(userSeq));
+		userInfo.setDetailTreasure(treasureLogService.findDetailTreasure(userSeq));
+		
+		return userInfo;
 	}
 
 }

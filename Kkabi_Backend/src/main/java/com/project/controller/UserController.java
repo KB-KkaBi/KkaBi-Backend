@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.domain.User;
 import com.project.dto.UserLoginRequestDto;
+import com.project.dto.PasswordRequestDTO;
+import com.project.dto.UserInfoResponseDTO;
 import com.project.service.UserService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -59,27 +62,38 @@ private UserService userService;
 		return map;
 	}
 	
+	@PostMapping("/check-email")
+	public Map<String, String> checkEmail(@RequestParam String email){
+		
+		Map<String, String> response = new HashMap<String, String>();
+			
+		if(!userService.isEmailExists(email)) {
+
+			response.put("message", "중복되지 않는 이메일입니다.");
+
+		}
+			
+		return response;
+	}
+	
 	/**
 	 * 패스워드 변경하기
+	 *
 	 * */
 	@PostMapping("/update-password") 
 	public Map<String, String> updatePassword( 
-			HttpSession session,			//@PathVariable("email") String email, 
-			@RequestBody Map<String, String> request
-	) {
-		Map<String, String> response = new HashMap<>();
-		
+			HttpSession session,
+			@RequestBody PasswordRequestDTO request
+	) throws Exception{
+		Map<String, String> response = new HashMap<String, String>();
 		//이메일을 session에서 확인
-		try {
-			User user  =(User) session.getAttribute("loginUser");
-			User dbUser = userService.findByEmail(user.getEmail());
-			userService.updatePw(dbUser, request.get("currentPw"), request.get("newPw"));
-			
-			
-			response.put("message", "비밀번호 변경이 완료되었습니다.");
-		} catch (Exception e) {
-			response.put("message", e.getMessage());
-		}
+		User user  =(User) session.getAttribute("loginUser");
+		User dbUser = userService.findByEmail(user.getEmail());			
+		userService.updatePw(dbUser, request.getCurrentPw(), request.getNewPw());
+
+
+		response.put("message", "비밀번호 변경이 완료되었습니다.");
+		
 		
 		return response;
 	}
@@ -164,6 +178,17 @@ private UserService userService;
 		}
 		
 		return maps;
+	}
+	
+	@ApiOperation(value = "유저 정보 불러오기", notes = "메인페이지, 마이페이지 랜딩될 때 사용된다.")
+	@GetMapping("/userInfo")
+	public UserInfoResponseDTO getUserInfo(HttpSession session) {
+		
+		User user = (User)session.getAttribute("loginUser");
+		
+		UserInfoResponseDTO userInfo = userService.findUserInfo(user.getUserSeq());
+		
+		return userInfo;
 	}
 
 }

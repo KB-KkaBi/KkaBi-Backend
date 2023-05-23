@@ -10,7 +10,9 @@ import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
+import com.project.dto.DetailMoneyDTO;
 import com.project.repository.AccountListRepository;
+import com.project.repository.TreasureLogRepository;
 
 import java.util.List;
 
@@ -22,6 +24,9 @@ public class AccountListServiceImpl implements AccountListService {
 
 	@Autowired
 	private AccountListRepository accountListRep;
+	
+	@Autowired
+	private TreasureLogRepository treasureLogRep;
 	
 	@Override
 	public AccountList insertNewAccount(AccountList accountList) {		
@@ -57,6 +62,26 @@ public class AccountListServiceImpl implements AccountListService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public DetailMoneyDTO findDetailMoney(int userSeq) {
+		DetailMoneyDTO detailMoney = new DetailMoneyDTO();
+		
+		int totalDeposit = accountListRep.selectSumOfMyDepositJPQL(userSeq)==null?0:
+			accountListRep.selectSumOfMyDepositJPQL(userSeq);
+		
+		int totalSavings = accountListRep.selectSumOfMySavingsJPQL(userSeq)==null?0:
+			accountListRep.selectSumOfMySavingsJPQL(userSeq);
+		
+		int totalTreasure = treasureLogRep.selectSumOfMyTreausreJPQL(userSeq)==null?0:
+			treasureLogRep.selectSumOfMyTreausreJPQL(userSeq);
+		
+		detailMoney.setTotalDeposit(totalDeposit);
+		detailMoney.setTotalSavings(totalSavings);
+		detailMoney.setTotalTreasure(totalTreasure);
+		
+		return detailMoney;
 	}
 
 }

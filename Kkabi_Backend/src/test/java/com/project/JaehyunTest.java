@@ -39,19 +39,19 @@ class JaehyunTest {
 
 	@Test
 	void insertTreasureInfo() {
-		treasureInfoRep.save(new TreasureInfo(1, "보석1", 0.03, 50));
+		treasureInfoRep.save(new TreasureInfo(1, "사파이", 0.03, 50));
 		treasureInfoRep.save(new TreasureInfo(2, "반지", 0.05, 100));
 		treasureInfoRep.save(new TreasureInfo(3, "왕관", 0.07, 200));
-		treasureInfoRep.save(new TreasureInfo(4, "보석2", 0.10, 300));
+		treasureInfoRep.save(new TreasureInfo(4, "다이", 0.10, 300));
 	}
 
 	@Test
 	void insertQuizInfo() {
 		quizInfoRep.save(new QuizInfo(1, "주권에 대하여 주주가 가지는 권리 및 자본금 중의 출자지분을 나타내는 단어는?", "주식",
-				"[ㅈ, ㄱ, ㄴ, ㄹ, ㅁ, ㅇ, ㅂ, ㄷ, ㅅ, ㅎ, ㅌ, ㅈ, ㅇ, ㅡ, ㄱ, ㅏ, ㅓ, ㅑ, ㅣ, ㅢ, ㅠ, ㅣ, ㅜ, ㅏ, ㅡ]",
+				"[ㅈ, ㄱ, ㄴ, ㄹ, ㅁ, ㅇ, ㅂ, ㄷ, ㅅ, ㅎ, ㅌ, ㅈ, ㅇ, ㅡ, ㄱ, ㅏ, ㅓ, ㅑ, ㅣ, ㅢ, ㅠ, ㅣ, ㅜ, ㅏ, ㅡ]", "ㅈ, ㅅ",
 				treasureInfoRep.findByTreasureId(2)));
 		quizInfoRep.save(new QuizInfo(2, "일정금액을 매월 일정기간 동안에 불입한 이후 약정계약 만료 이후에 금액 + 이자를 받는 예금 형식을 나타내는 단어는?", "적금",
-				"[ㅈ, ㄱ, ㄴ, ㄹ, ㅁ, ㅇ, ㅂ, ㄷ, ㅅ, ㅎ, ㅌ, ㅈ, ㅇ, ㅡ, ㄱ, ㅏ, ㅓ, ㅑ, ㅣ, ㅢ, ㅠ, ㅣ, ㅜ, ㅏ, ㅡ]",
+				"[ㅈ, ㄱ, ㄴ, ㄹ, ㅁ, ㅇ, ㅂ, ㄷ, ㅅ, ㅎ, ㅌ, ㅈ, ㅇ, ㅡ, ㄱ, ㅏ, ㅓ, ㅑ, ㅣ, ㅢ, ㅠ, ㅣ, ㅜ, ㅏ, ㅡ]", "ㅈ, ㄱ",
 				treasureInfoRep.findByTreasureId(3)));
 	}
 

@@ -30,10 +30,8 @@ public class AccountListController {
 	public AccountList insert(@RequestBody AccoutListRequestDTO requestData, HttpSession session) {	
 		
 		AccountList accountList = new AccountList(requestData);
-		/**
-		 * 로그인 완성되면 session으로 받아오게 로직 수정하기
-		 */
-//		accountList.setUser((User)session.getAttribute("loginUser"));
+		
+		accountList.setUser((User)session.getAttribute("loginUser"));
 		
 		AccountList accountlist=accountListService.insertNewAccount(accountList);
 		
