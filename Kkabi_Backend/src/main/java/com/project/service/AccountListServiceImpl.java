@@ -10,6 +10,7 @@ import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
+import com.project.dto.DetailMoneyDTO;
 import com.project.repository.AccountListRepository;
 
 import java.util.List;
@@ -57,6 +58,16 @@ public class AccountListServiceImpl implements AccountListService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public DetailMoneyDTO findDetailMoney(int userSeq) {
+		DetailMoneyDTO detailMoney = new DetailMoneyDTO();
+		
+		detailMoney.setTotalDeposit(accountListRep.selectSumOfMyDepositJPQL(userSeq));
+		detailMoney.setTotalSavings(accountListRep.selectSumOfMySavingsJPQL(userSeq));
+		
+		return detailMoney;
 	}
 
 }

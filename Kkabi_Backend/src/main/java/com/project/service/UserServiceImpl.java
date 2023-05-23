@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRep;
 	
 	@Autowired
-	private AccountListRepository accountListRep;
+	private AccountListService accountListService;
 	
 	/**
 	 * 이메일 존재 여부 확인 
@@ -111,19 +111,14 @@ public class UserServiceImpl implements UserService {
 		User user = userRep.findById(userSeq).orElse(null);
 		
 		UserResponseDTO userInfo = new UserResponseDTO();
-		DetailMoneyDTO detailMoney = new DetailMoneyDTO();
 		DetailTreasureDTO detailTreasure = new DetailTreasureDTO();
-		
-		// detailMoney 만드는 과정 -> AccountListService로 옮길 예정
-		detailMoney.setTotalDeposit(accountListRep.selectSumOfMyDepositJPQL(userSeq));
-		detailMoney.setTotalSavings(accountListRep.selectSumOfMySavingsJPQL(userSeq));
 		
 		// detailTreasure 만드는 과정 -> TreasureLog로 옮길 예정
 		
 		// 준비물을 가지고 userInfo Setting
 		userInfo.setCharacter(user.getCharacter());
 		userInfo.setNickname(user.getNickname());
-		userInfo.setDetailMoney(detailMoney);
+		userInfo.setDetailMoney(accountListService.findDetailMoney(userSeq));
 		userInfo.setDetailTreasure(detailTreasure);
 		
 		return userInfo;
