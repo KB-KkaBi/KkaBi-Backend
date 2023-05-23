@@ -22,4 +22,16 @@ public interface AccountListRepository extends JpaRepository<AccountList, Intege
 	@Modifying
 	void updateAccountMoney(@Param("accountLogMoney") int accountLogMoney, @Param("accountId") int accountId);
 	
+	@Query(value = "select sum(a.accountMoney) from AccountList a "
+	         + "where a.accountInfo.accountInfoId in (1, 2) "
+	         + "group by a.user.userSeq "
+	         + "having a.user.userSeq = :userSeq ")
+	int selectSumOfMyDepositJPQL (@Param("userSeq") int userSeq);
+	   
+	@Query(value = "select sum(a.accountMoney) from AccountList a "
+	         + "where a.accountInfo.accountInfoId in (3, 4) "
+	         + "group by a.user.userSeq "
+	         + "having a.user.userSeq = :userSeq ")
+	int selectSumOfMySavingsJPQL (@Param("userSeq") int userSeq);
+	
 }
