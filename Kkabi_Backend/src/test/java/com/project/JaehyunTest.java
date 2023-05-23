@@ -39,10 +39,10 @@ class JaehyunTest {
 
 	@Test
 	void insertTreasureInfo() {
-		treasureInfoRep.save(new TreasureInfo(1, "보석1", 0.03, 50));
+		treasureInfoRep.save(new TreasureInfo(1, "사파이", 0.03, 50));
 		treasureInfoRep.save(new TreasureInfo(2, "반지", 0.05, 100));
 		treasureInfoRep.save(new TreasureInfo(3, "왕관", 0.07, 200));
-		treasureInfoRep.save(new TreasureInfo(4, "보석2", 0.10, 300));
+		treasureInfoRep.save(new TreasureInfo(4, "다이", 0.10, 300));
 	}
 
 	@Test

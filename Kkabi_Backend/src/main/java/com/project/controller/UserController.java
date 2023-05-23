@@ -62,26 +62,38 @@ private UserService userService;
 		return map;
 	}
 	
+	@PostMapping("/check-email")
+	public Map<String, String> checkEmail(@RequestParam String email){
+		
+		Map<String, String> response = new HashMap<String, String>();
+			
+		if(!userService.isEmailExists(email)) {
+
+			response.put("message", "중복되지 않는 이메일입니다.");
+
+		}
+			
+		return response;
+	}
+	
 	/**
 	 * 패스워드 변경하기
+	 *
 	 * */
 	@PostMapping("/update-password") 
 	public Map<String, String> updatePassword( 
 			HttpSession session,
 			@RequestBody PasswordRequestDTO request
-	) {
+	) throws Exception{
 		Map<String, String> response = new HashMap<String, String>();
 		//이메일을 session에서 확인
-		try {
-			User user  =(User) session.getAttribute("loginUser");
-			User dbUser = userService.findByEmail(user.getEmail());
-			userService.updatePw(dbUser, request.getCurrentPw(), request.getNewPw());
-			
-			
-			response.put("message", "비밀번호 변경이 완료되었습니다.");
-		} catch (Exception e) {
-			response.put("message", e.getMessage());
-		}
+		User user  =(User) session.getAttribute("loginUser");
+		User dbUser = userService.findByEmail(user.getEmail());			
+		userService.updatePw(dbUser, request.getCurrentPw(), request.getNewPw());
+
+
+		response.put("message", "비밀번호 변경이 완료되었습니다.");
+		
 		
 		return response;
 	}
