@@ -14,10 +14,10 @@ import com.project.dto.Treasure;
 @Repository
 public interface TreasureLogRepository extends JpaRepository<TreasureLog, Integer> {
 
-	@Query(value="select coalesce(sum(t.cnt * t.treasureInfo.price),0) from TreasureLog t "
+	@Query(value="select sum(t.cnt * t.treasureInfo.price) from TreasureLog t "
 			+ "group by t.user.userSeq "
 			+ "having t.user.userSeq = :userSeq")
-	int selectSumOfMyTreausreJPQL(@Param("userSeq") int userSeq);
+	Integer selectSumOfMyTreausreJPQL(@Param("userSeq") int userSeq);
 	
 	@Query(value="select t.treasureInfo.treasureId as treasure, sum(t.cnt) as cnt from TreasureLog t "
 			+ "where t.user.userSeq = :userSeq "

@@ -68,9 +68,18 @@ public class AccountListServiceImpl implements AccountListService {
 	public DetailMoneyDTO findDetailMoney(int userSeq) {
 		DetailMoneyDTO detailMoney = new DetailMoneyDTO();
 		
-		detailMoney.setTotalDeposit(accountListRep.selectSumOfMyDepositJPQL(userSeq));
-		detailMoney.setTotalSavings(accountListRep.selectSumOfMySavingsJPQL(userSeq));
-		detailMoney.setTotalTreasure(treasureLogRep.selectSumOfMyTreausreJPQL(userSeq));
+		int totalDeposit = accountListRep.selectSumOfMyDepositJPQL(userSeq)==null?0:
+			accountListRep.selectSumOfMyDepositJPQL(userSeq);
+		
+		int totalSavings = accountListRep.selectSumOfMySavingsJPQL(userSeq)==null?0:
+			accountListRep.selectSumOfMySavingsJPQL(userSeq);
+		
+		int totalTreasure = treasureLogRep.selectSumOfMyTreausreJPQL(userSeq)==null?0:
+			treasureLogRep.selectSumOfMyTreausreJPQL(userSeq);
+		
+		detailMoney.setTotalDeposit(totalDeposit);
+		detailMoney.setTotalSavings(totalSavings);
+		detailMoney.setTotalTreasure(totalTreasure);
 		
 		return detailMoney;
 	}

@@ -114,4 +114,9 @@ class SangwooTest {
 		}
 	}
 
+	@Test
+	void test4() {
+		
+		System.out.println(accountListRep.selectSumOfMySavingsJPQL(2));
+	}
 }
