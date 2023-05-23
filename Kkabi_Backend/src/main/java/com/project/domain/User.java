@@ -41,7 +41,7 @@ public class User {
 	@Column(length = 30)
 	private String nickname;
 	
-	@Column(length = 50)
+	@Column(length = 50, name="characters")
 	private String character;
 	
 	/**
