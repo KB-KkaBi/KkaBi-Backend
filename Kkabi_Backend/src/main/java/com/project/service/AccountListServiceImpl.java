@@ -12,6 +12,7 @@ import com.project.domain.User;
 import com.project.dto.AccoutListRequestDTO;
 import com.project.dto.DetailMoneyDTO;
 import com.project.repository.AccountListRepository;
+import com.project.repository.TreasureLogRepository;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class AccountListServiceImpl implements AccountListService {
 
 	@Autowired
 	private AccountListRepository accountListRep;
+	
+	@Autowired
+	private TreasureLogRepository treasureLogRep;
 	
 	@Override
 	public AccountList insertNewAccount(AccountList accountList) {		
@@ -66,6 +70,7 @@ public class AccountListServiceImpl implements AccountListService {
 		
 		detailMoney.setTotalDeposit(accountListRep.selectSumOfMyDepositJPQL(userSeq));
 		detailMoney.setTotalSavings(accountListRep.selectSumOfMySavingsJPQL(userSeq));
+		detailMoney.setTotalTreasure(treasureLogRep.selectSumOfMyTreausreJPQL(userSeq));
 		
 		return detailMoney;
 	}
