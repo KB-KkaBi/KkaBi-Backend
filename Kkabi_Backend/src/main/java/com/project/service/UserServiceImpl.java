@@ -23,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private AccountListService accountListService;
 	
+	@Autowired
+	private TreasureLogService treasureLogService;
+	
 	/**
 	 * 이메일 존재 여부 확인 
 	 * */
@@ -111,7 +114,6 @@ public class UserServiceImpl implements UserService {
 		User user = userRep.findById(userSeq).orElse(null);
 		
 		UserResponseDTO userInfo = new UserResponseDTO();
-		DetailTreasureDTO detailTreasure = new DetailTreasureDTO();
 		
 		// detailTreasure 만드는 과정 -> TreasureLog로 옮길 예정
 		
@@ -119,7 +121,7 @@ public class UserServiceImpl implements UserService {
 		userInfo.setCharacter(user.getCharacter());
 		userInfo.setNickname(user.getNickname());
 		userInfo.setDetailMoney(accountListService.findDetailMoney(userSeq));
-		userInfo.setDetailTreasure(detailTreasure);
+		userInfo.setDetailTreasure(treasureLogService.findDetailTreasure(userSeq));
 		
 		return userInfo;
 	}

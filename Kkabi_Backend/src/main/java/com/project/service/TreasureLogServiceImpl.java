@@ -15,7 +15,7 @@ public class TreasureLogServiceImpl implements TreasureLogService {
 	TreasureLogRepository treasureLogRep;
 
 	@Override
-	public DetailTreasureDTO selectDetailTreasure(int userSeq) {
+	public DetailTreasureDTO findDetailTreasure(int userSeq) {
 		
 		DetailTreasureDTO detailTreasure = new DetailTreasureDTO();
 		

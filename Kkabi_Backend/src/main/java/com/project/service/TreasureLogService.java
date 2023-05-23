@@ -4,6 +4,6 @@ import com.project.dto.DetailTreasureDTO;
 
 public interface TreasureLogService {
 	
-	DetailTreasureDTO selectDetailTreasure(int userSeq);
+	DetailTreasureDTO findDetailTreasure(int userSeq);
 
 }
