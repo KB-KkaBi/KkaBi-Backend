@@ -19,7 +19,7 @@ public interface TreasureLogRepository extends JpaRepository<TreasureLog, Intege
 			+ "having t.user.userSeq = :userSeq")
 	int selectSumOfMyTreausreJPQL(@Param("userSeq") int userSeq);
 	
-	@Query(value="select t.treasureInfo.treasureId treasure, sum(t.cnt) cnt from TreasureLog t "
+	@Query(value="select t.treasureInfo.treasureId as treasure, sum(t.cnt) as cnt from TreasureLog t "
 			+ "where t.user.userSeq = :userSeq "
 			+ "group by t.treasureInfo.treasureId")
 	List<Treasure> selectDetailTreasureJPQL(@Param("userSeq") int userSeq);

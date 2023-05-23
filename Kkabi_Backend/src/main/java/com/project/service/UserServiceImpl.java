@@ -114,9 +114,7 @@ public class UserServiceImpl implements UserService {
 		User user = userRep.findById(userSeq).orElse(null);
 		
 		UserResponseDTO userInfo = new UserResponseDTO();
-		
-		// detailTreasure 만드는 과정 -> TreasureLog로 옮길 예정
-		
+				
 		// 준비물을 가지고 userInfo Setting
 		userInfo.setCharacter(user.getCharacter());
 		userInfo.setNickname(user.getNickname());

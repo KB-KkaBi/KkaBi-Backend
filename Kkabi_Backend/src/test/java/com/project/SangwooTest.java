@@ -18,9 +18,11 @@ import com.project.domain.AccountList;
 import com.project.domain.AccountLog;
 import com.project.domain.QuizLog;
 import com.project.domain.User;
+import com.project.dto.Treasure;
 import com.project.repository.AccountInfoRepository;
 import com.project.repository.AccountListRepository;
 import com.project.repository.AccountLogRepository;
+import com.project.repository.TreasureLogRepository;
 import com.project.repository.UserRepository;
 
 @SpringBootTest
@@ -39,6 +41,9 @@ class SangwooTest {
 	
 	@Autowired
 	AccountListRepository accountListRep;
+	
+	@Autowired
+	TreasureLogRepository treasureLogRep;
 	
 	@Autowired
 	EntityManager entityManager;
@@ -96,6 +101,17 @@ class SangwooTest {
 
 	@Test
 	void contextLoads() {
+	}
+	
+	@Test
+	void test3() {
+		
+		List<Treasure> t = treasureLogRep.selectDetailTreasureJPQL(2);
+		
+		for(Treasure item : t) {
+			System.out.println(item.getTreasure());
+			System.out.println(item.getCnt());
+		}
 	}
 
 }

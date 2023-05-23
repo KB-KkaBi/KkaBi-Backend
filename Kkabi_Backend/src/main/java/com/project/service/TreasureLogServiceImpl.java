@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.dto.DetailTreasureDTO;
 import com.project.dto.Treasure;
 import com.project.repository.TreasureLogRepository;
 
+@Service
 public class TreasureLogServiceImpl implements TreasureLogService {
 	
 	@Autowired
