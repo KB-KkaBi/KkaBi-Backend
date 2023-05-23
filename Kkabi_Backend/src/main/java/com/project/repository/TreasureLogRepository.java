@@ -1,5 +1,7 @@
 package com.project.repository;
 
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,8 @@ public interface TreasureLogRepository extends JpaRepository<TreasureLog, Intege
 			+ "having t.user.userSeq = :userSeq")
 	int selectSumOfMyTreausreJPQL(@Param("userSeq") int userSeq);
 	
+	@Query(value="select t.treasureInfo.treasureId, sum(t.cnt) from TreasureLog t "
+			+ "where t.user.userSeq = :userSeq "
+			+ "group by t.treasureInfo.treasureId")
+	Map<Integer, Integer> selectDetailTreasureJPQL(@Param("userSeq") int userSeq);
 }
