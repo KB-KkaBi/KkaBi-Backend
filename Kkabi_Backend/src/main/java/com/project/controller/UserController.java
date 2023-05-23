@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.domain.User;
 import com.project.dto.UserLoginRequestDto;
-import com.project.dto.UserResponseDTO;
+import com.project.dto.PasswordRequestDTO;
+import com.project.dto.UserInfoResponseDTO;
 import com.project.service.UserService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -66,16 +67,15 @@ private UserService userService;
 	 * */
 	@PostMapping("/update-password") 
 	public Map<String, String> updatePassword( 
-			HttpSession session,			//@PathVariable("email") String email, 
-			@RequestBody Map<String, String> request
+			HttpSession session,
+			@RequestBody PasswordRequestDTO request
 	) {
-		Map<String, String> response = new HashMap<>();
-		
+		Map<String, String> response = new HashMap<String, String>();
 		//이메일을 session에서 확인
 		try {
 			User user  =(User) session.getAttribute("loginUser");
 			User dbUser = userService.findByEmail(user.getEmail());
-			userService.updatePw(dbUser, request.get("currentPw"), request.get("newPw"));
+			userService.updatePw(dbUser, request.getCurrentPw(), request.getNewPw());
 			
 			
 			response.put("message", "비밀번호 변경이 완료되었습니다.");
@@ -170,11 +170,11 @@ private UserService userService;
 	
 	@ApiOperation(value = "유저 정보 불러오기", notes = "메인페이지, 마이페이지 랜딩될 때 사용된다.")
 	@GetMapping("/userInfo")
-	public UserResponseDTO getUserInfo(HttpSession session) {
+	public UserInfoResponseDTO getUserInfo(HttpSession session) {
 		
 		User user = (User)session.getAttribute("loginUser");
 		
-		UserResponseDTO userInfo = userService.findUserInfo(user.getUserSeq());
+		UserInfoResponseDTO userInfo = userService.findUserInfo(user.getUserSeq());
 		
 		return userInfo;
 	}

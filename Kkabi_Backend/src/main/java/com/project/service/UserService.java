@@ -1,7 +1,7 @@
 package com.project.service;
 
 import com.project.domain.User;
-import com.project.dto.UserResponseDTO;
+import com.project.dto.UserInfoResponseDTO;
 
 public interface UserService {
 	User findByEmail(String email);
@@ -41,7 +41,7 @@ public interface UserService {
 	 * @param userSeq
 	 * @return UserResponseDTO
 	 */
-	UserResponseDTO findUserInfo(int userSeq);
+	UserInfoResponseDTO findUserInfo(int userSeq);
 
 
 }

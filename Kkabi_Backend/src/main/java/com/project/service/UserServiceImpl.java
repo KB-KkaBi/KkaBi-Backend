@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.domain.User;
 import com.project.dto.DetailMoneyDTO;
 import com.project.dto.DetailTreasureDTO;
-import com.project.dto.UserResponseDTO;
+import com.project.dto.UserInfoResponseDTO;
 import com.project.repository.AccountListRepository;
 import com.project.repository.UserRepository;
 
@@ -109,11 +109,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponseDTO findUserInfo(int userSeq) {
+	public UserInfoResponseDTO findUserInfo(int userSeq) {
 		
 		User user = userRep.findById(userSeq).orElse(null);
 		
-		UserResponseDTO userInfo = new UserResponseDTO();
+		UserInfoResponseDTO userInfo = new UserInfoResponseDTO();
 				
 		// 준비물을 가지고 userInfo Setting
 		userInfo.setCharacter(user.getCharacter());
