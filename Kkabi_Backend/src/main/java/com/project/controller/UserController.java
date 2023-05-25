@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.domain.User;
 import com.project.dto.UserLoginRequestDto;
+import com.project.dto.EmailRequestDTO;
+import com.project.dto.NicknameRequestDTO;
 import com.project.dto.PasswordRequestDTO;
 import com.project.dto.UserInfoResponseDTO;
 import com.project.service.UserService;
@@ -63,11 +65,11 @@ private UserService userService;
 	}
 	
 	@PostMapping("/check-email")
-	public Map<String, String> checkEmail(@RequestParam String email){
+	public Map<String, String> checkEmail(@RequestBody EmailRequestDTO request){
 		
 		Map<String, String> response = new HashMap<String, String>();
 			
-		if(!userService.isEmailExists(email)) {
+		if(!userService.isEmailExists(request.getEmail())) {
 
 			response.put("message", "중복되지 않는 이메일입니다.");
 
@@ -105,7 +107,7 @@ private UserService userService;
 	@PostMapping("/update-nickname") 
 	public Map<String, String> updateNickname( 
 			HttpSession session,
-			@RequestParam("newNickname") String newNickname
+			@RequestBody NicknameRequestDTO request
 	) {
 		//MAP 생성
 		Map<String, String> response = new HashMap<>();
@@ -113,7 +115,7 @@ private UserService userService;
 		//이메일을 session에서 확인
 		User user = (User) session.getAttribute("loginUser");
 		User dbUser = userService.findByEmail(user.getEmail());
-		userService.updateNickname(dbUser, newNickname);
+		userService.updateNickname(dbUser, request.getNickname());
 		
 		response.put("message", "닉네임 변경이 완료되었습니다.");
 		
