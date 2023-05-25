@@ -71,7 +71,6 @@ public class AccountList {
 	public AccountList(AccoutListRequestDTO request) {
 		this.accountName = request.getAccountName();
 		this.accountInfo = new AccountInfo(request.getAccountInfoId());
-		this.user = new User(request.getUserSeq());
 		this.status = "1";
 		this.accountMoney = 0;
 	}

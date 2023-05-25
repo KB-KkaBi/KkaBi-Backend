@@ -14,11 +14,4 @@ import lombok.Setter;
 public class AccoutListRequestDTO {
 	private int accountInfoId;
 	private String accountName;
-	
-	/**
-	 * 나중에 지울것!
-	 */
-	private int userSeq;
-	
-	
 }
