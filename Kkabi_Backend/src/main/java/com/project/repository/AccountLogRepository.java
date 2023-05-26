@@ -1,6 +1,8 @@
 package com.project.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,4 +21,7 @@ public interface AccountLogRepository extends JpaRepository<AccountLog, Integer>
 	
 	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId desc")
 	Page<AccountLog> findAllByAccountListJPQL(@Param("accountId") int accountId, Pageable page);
+	
+	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId desc")
+	List<AccountLog> findTotalByAccountListJPQL(@Param("accountId") int accountId);
 }
