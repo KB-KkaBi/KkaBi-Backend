@@ -16,4 +16,9 @@ public interface QuizLogService {
 	 * @return List<QuizLog>
 	 */
 	Page<QuizLog> selectQuizLog(int userSeq, Pageable page);
+	
+	/**
+	 * 내 로그 전체 조회
+	 */
+	List<QuizLog> selectTotalQuizLog(int userSeq);
 }

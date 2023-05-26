@@ -41,4 +41,12 @@ public class QuizLogController {
 		return quizlogList;
 	}
 	
+	@GetMapping("/quiz-total-log")
+	public List<QuizLog> selectTotalQuizLog(HttpSession session){
+		User user=(User) session.getAttribute("loginUser");
+		
+		List<QuizLog> quizlogList=quizLogservice.selectTotalQuizLog(user.getUserSeq());
+		
+		return quizlogList;
+	}
 }

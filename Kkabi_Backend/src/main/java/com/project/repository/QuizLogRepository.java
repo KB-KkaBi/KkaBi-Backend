@@ -22,4 +22,7 @@ public interface QuizLogRepository  extends JpaRepository<QuizLog, Integer>{
 	
 	@Query(value="select q from QuizLog q where q.user.userSeq=:userSeq order by q.quizLogId desc")
 	Page<QuizLog> findAllQuizLog(@Param("userSeq") int userSeq, Pageable page);
+	
+	@Query(value="select q from QuizLog q where q.user.userSeq=:userSeq order by q.quizLogId desc")
+	List <QuizLog> findTotalQuizLog(@Param("userSeq") int userSeq);
 }

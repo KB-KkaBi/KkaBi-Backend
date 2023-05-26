@@ -26,4 +26,10 @@ public class QuizLogServiceImpl implements QuizLogService {
 		return quizLogList;
 	}
 
+	@Override
+	public List<QuizLog> selectTotalQuizLog(int userSeq){
+		List<QuizLog> quizLogList=quizLogRep.findTotalQuizLog(userSeq);
+		return quizLogList;
+	}
+	
 }

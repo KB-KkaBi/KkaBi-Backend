@@ -134,7 +134,10 @@ class KkabiBackendApplicationTests {
 //		}
 //
 //		
-		
+	}
+	
+	@Test
+	void quizTotallogGet() {
 		
 	}
 }
