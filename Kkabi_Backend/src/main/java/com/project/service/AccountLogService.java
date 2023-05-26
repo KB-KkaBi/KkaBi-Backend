@@ -34,4 +34,9 @@ public interface AccountLogService {
 	 * 
 	 */
 	void insertAccountLogForInterest();
+	
+	/**
+	 * 완전 전체 조회
+	 */
+	List<AccountLog> selectTotalAccountLog(int accountId);
 }

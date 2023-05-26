@@ -58,6 +58,12 @@ public class AccountLogServiceImpl implements AccountLogService{
 		return accountLogList;
 	}
 
+	@Override
+	public List<AccountLog> selectTotalAccountLog(int accountId){
+		List<AccountLog> accountLogList=accountLogRep.findTotalByAccountListJPQL(accountId);
+		
+		return accountLogList;
+	}
 	
 	@Override
 	public void insertAccountLogForInterest() {

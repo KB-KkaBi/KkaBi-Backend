@@ -68,5 +68,18 @@ public class AccountLogController {
 	public void insertAccountLogForInterest() {
 		accountLogService.insertAccountLogForInterest();
 	}
-
+	
+	/**
+	 * 완전 전체 조회
+	 */
+	@GetMapping("/account-total-log")
+	@ApiOperation(value="내 계좌 로그 전체 조회", notes="나의 계좌 전체로그가 필요할 때 사용한다.")
+	public List<AccountLog> selectAccountLog(int accountId){
+		
+		List<AccountLog> accountLogList = accountLogService.selectTotalAccountLog(accountId);
+	
+		
+		return accountLogList;
+	}
+	
 }
