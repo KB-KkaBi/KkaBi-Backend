@@ -22,6 +22,11 @@ public interface AccountLogRepository extends JpaRepository<AccountLog, Integer>
 	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId desc")
 	Page<AccountLog> findAllByAccountListJPQL(@Param("accountId") int accountId, Pageable page);
 	
+	/**
+	 * 완전 전체 조회
+	 * @param accountId
+	 * @return
+	 */
 	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId desc")
 	List<AccountLog> findTotalByAccountListJPQL(@Param("accountId") int accountId);
 }
