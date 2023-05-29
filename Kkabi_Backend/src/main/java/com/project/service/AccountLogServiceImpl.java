@@ -84,7 +84,7 @@ public class AccountLogServiceImpl implements AccountLogService{
 					// 3. 적금이라면
 					if(accountType.contains("적금")) {
 						// 4. 현재 날짜가 적금만기일 다음이라면
-						if(current.isAfter(l.getCreatedAt().toLocalDate().plusDays(dueDate))) {
+						if(current.isEqual(l.getCreatedAt().toLocalDate().plusDays(dueDate))) {
 							
 							int interest =(int)(l.getAccountMoney() * (l.getAccountInfo().getInterestRate()));
 							
