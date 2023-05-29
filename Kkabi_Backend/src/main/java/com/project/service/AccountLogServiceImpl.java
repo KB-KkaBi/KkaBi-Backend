@@ -94,7 +94,7 @@ public class AccountLogServiceImpl implements AccountLogService{
 									.accountLogMoney(l.getAccountMoney() + interest)
 									.transactionAmount(interest)
 									.transactionReason("만기 이자")
-									.transactionType("이자")
+									.transactionType("입금")
 									.build());
 							
 							// 내 계좌 업데이트
