@@ -25,7 +25,6 @@ public class KkabiBackendApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("https://kb-kkabi.web.app", "http://localhost:5173", "http://localhost:5174")
-                .allowedHeaders("*")
                 .allowedMethods("*")
                 .allowCredentials(true);
             }
