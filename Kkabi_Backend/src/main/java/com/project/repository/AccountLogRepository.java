@@ -19,7 +19,7 @@ public interface AccountLogRepository extends JpaRepository<AccountLog, Integer>
 	int PAGE_COUNT = 10;
 	Pageable page = PageRequest.of((nowPage-1), PAGE_COUNT);
 	
-	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId desc")
+	@Query(value="select a from AccountLog a where a.accountList.accountId = :accountId order by a.accountLogId")
 	Page<AccountLog> findAllByAccountListJPQL(@Param("accountId") int accountId, Pageable page);
 	
 	/**
