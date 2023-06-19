@@ -1,8 +1,10 @@
-# 깨비와 함께 Backend
+# 🐥 깨비와 함께
 <img width="800" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/514b6330-6454-4334-81ad-17bf43f7ac35">
 
-사이트 👉 http://kb-kkabi.web.app (현재 서비스 중단) <br>
-시연 영상 👉 https://www.youtube.com/watch?v=4afc1a1zD58
+👉 [사이트](http://kb-kkabi.web.app)  (현재 서비스 중단) <br>
+👉 [시연 영상](https://www.youtube.com/watch?v=4afc1a1zD58) <br>
+👉 [FrontEnd](https://github.com/KB-KkaBi/KkaBi-Frontend) <br>
+👉 [BackEnd](https://github.com/KB-KkaBi/KkaBi-Backend) <br>
 
 ![Github messages](https://img.shields.io/github/languages/count/KB-KkaBi/KkaBi-Backend)
 ![Github messages](https://img.shields.io/github/last-commit/KB-KkaBi/KkaBi-Backend)
@@ -14,10 +16,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/KB-KkaBi/KkaBi-Backend)](https://github.com/KB-KkaBi/KkaBi-Backend/issues)
 [![GitHub stars](https://img.shields.io/github/stars/KB-KkaBi/KkaBi-Backend)](https://github.com/KB-KkaBi/KkaBi-Backend/stargazers)
 
-## 서비스 소개
+## 💡 서비스 소개
 
 
-## 기능
+## 🎮 기능
 ### 은행
 
 <img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/1854c4fe-614e-48a8-bb09-c11debf037f5">
@@ -44,14 +46,15 @@
 <img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/a826d140-6ec5-459f-b13c-398eedbe6ab0">
 
 
-## 기대효과
+## 👍 기대효과
 
-👍 
+## 💻 개발 환경 구조도
 
-## 배포 환경
-AWS EC2(Ubuntu 22.04 LTS)
+<img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/e783d5ab-e893-49d8-8200-6bbfa2938699">
+<img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/021794dc-b2ad-4424-9f9d-c5c5146aada1">
 
-## 개발자
+
+## 🧑‍💻 개발자
 
 <img width="800" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/280e174c-6432-49e5-8065-e7f5564dee5e">
 
