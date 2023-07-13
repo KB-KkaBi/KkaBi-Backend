@@ -59,4 +59,5 @@
 <img width="800" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/280e174c-6432-49e5-8065-e7f5564dee5e">
 
 [윤상우](https://github.com/Awarduuu) - 
+[김태선](https://github.com/KiM-Taeseon) - 
 <br>
