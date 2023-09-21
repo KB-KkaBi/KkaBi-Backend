@@ -52,11 +52,3 @@
 
 <img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/e783d5ab-e893-49d8-8200-6bbfa2938699">
 <img width="400" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/021794dc-b2ad-4424-9f9d-c5c5146aada1">
-
-
-## 🧑‍💻 개발자
-
-<img width="800" alt="image" src="https://github.com/KB-KkaBi/KkaBi-Backend/assets/64531982/280e174c-6432-49e5-8065-e7f5564dee5e">
-
-[윤상우](https://github.com/Awarduuu) - 
-<br>
